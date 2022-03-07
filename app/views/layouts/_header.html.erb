@@ -16,10 +16,11 @@
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
         <li><%= link_to "Home",   root_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to "Add Items",   '#' %></li>
-          <li><%= link_to "Add User",   signup_path %></li>
-          <li><%= link_to "Add Outlet",   '#' %></li>
+        <% if logged_in? && current_user.admin? %>
+          <li><%= link_to "User",   users_path %></li>
+          <li><%= link_to "Outlet",   '#' %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% elsif%>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
