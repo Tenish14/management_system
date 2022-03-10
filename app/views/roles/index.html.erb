@@ -1,0 +1,21 @@
+<% @title="Role" %>
+<h1 class="center">Roles</h1>
+
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+
+        <% @role.each do |role| %>                    
+            <tr>
+                <td><%= role.id%></td>
+                <td><%= role.name%></td>
+                <td><%= role.description %></td>
+            </tr>
+        <% end %>                    
+    </table>
+    <%= link_to 'Add Roles', new_path, class: 'btn btn-success' %>
+</div>

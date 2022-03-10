@@ -16,11 +16,12 @@
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
         <li><%= link_to "Home",   root_path %></li>
-        <% if logged_in? && current_user.admin? %>
+        <% if logged_in? && current_user.role_id == 1 %>
           <li><%= link_to "User",   users_path %></li>
+          <li><%= link_to "Role",   roles_path %></li>
           <li><%= link_to "Outlet",   '#' %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
-        <% elsif%>
+        <% elsif logged_in? && current_user.role_id != 1%>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
