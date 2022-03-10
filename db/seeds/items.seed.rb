@@ -1,6 +1,6 @@
 
-Category.where(name: 'Fruit').first_or_create! do |role|
-    role.description = 'Juicy fruit'
+Category.where(name: 'Fruit').first_or_create! do |category|
+    category.description = 'Juicy fruit'
 end
 
 category = Category.first

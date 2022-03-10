@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get '/roles', to:'roles#index'
   get '/new', to:'roles#new'
   post '/roles', to:'roles#create'
+  get '/items', to:'items#index'
+  get '/new_items', to:'items#new'
+  post '/items', to:'items#create'
+  get '/categories', to:'category#index'
+  get '/new_categories', to:'category#new'
+  post '/categories', to:'category#create'
 
 
   resources :users
