@@ -3,7 +3,7 @@ class CreateCompanies < ActiveRecord::Migration[7.0]
     create_table :companies do |t|
       t.string :name
       t.string :email
-      t.integer :phone_number
+      t.string :phone_number
       t.string :branch
 
       t.timestamps
