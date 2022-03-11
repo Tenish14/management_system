@@ -9,7 +9,11 @@
             <th>Last Name</th>
             <th>Username</th>
             <th>Email</th>
+<<<<<<< HEAD
             <th>Role Id</th>
+=======
+            <th>Role</th>
+>>>>>>> add-associate-tables
         </tr>
 
         <% @users.each do |user| %>                    
@@ -19,7 +23,11 @@
                 <td><%= user.last_name %></td>
                 <td><%= user.username%></td>
                 <td><%= user.email%></td>
+<<<<<<< HEAD
                 <td><%= user.role_id%></td>
+=======
+                <td><%= user.role.name%></td>
+>>>>>>> add-associate-tables
             </tr>
         <% end %>                    
     </table>

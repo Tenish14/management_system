@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_one :role, foreign_key: "role_id"
+    belongs_to :role
     before_save { email.downcase! }
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

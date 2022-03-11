@@ -15,8 +15,13 @@
       </div>
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
+<<<<<<< HEAD
         <li><%= link_to "Home",   items_path %></li>
         <% if logged_in? && current_user.role_id == 1 %>
+=======
+        <li><%= link_to "Home",   root_path %></li>
+        <% if logged_in? && current_user.role.name == "Admin" %>
+>>>>>>> add-associate-tables
           <li><%= link_to "User",   users_path %></li>
           <li><%= link_to "Role",   roles_path %></li>
           <li><%= link_to "Category", categories_path%></li>
