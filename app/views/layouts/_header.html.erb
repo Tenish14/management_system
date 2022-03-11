@@ -20,7 +20,7 @@
           <li><%= link_to "User",   users_path %></li>
           <li><%= link_to "Outlet",   '#' %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
-        <% elsif%>
+        <% elsif logged_in? && current_user.role.name != "Admin" %>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
