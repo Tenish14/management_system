@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-    belongs_to :item, class_name: "Item", optional: true
+    has_many :items
 
     validates :name, presence: true
     validates :description, presence: true

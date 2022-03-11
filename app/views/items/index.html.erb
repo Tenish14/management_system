@@ -9,7 +9,7 @@
             <th>Description</th>
             <th>Quantity Stock</th>
             <th>Price</th>
-            <th>Category Id</th>
+            <th>Category Name</th>
         </tr>
 
         <% @items.each do |item| %>                    
@@ -19,7 +19,7 @@
                 <td><%= item.description %></td>
                 <td><%= item.quantity_stock%></td>
                 <td><%= item.price%></td>
-                <td><%= item.category_id%></td>
+                <td><%= item.category.name%></td>
             </tr>
         <% end %>                    
     </table>
