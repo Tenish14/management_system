@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_11_020836) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_11_074630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,11 +80,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_020836) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.integer "role_id"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "companies", "locations"
   add_foreign_key "items", "categories"
+  add_foreign_key "users", "companies"
   add_foreign_key "users", "roles"
 end
