@@ -21,6 +21,9 @@
             <%= f.label :Category%>
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
+            <%= f.label :Company%>
+            <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
+
             <%= f.submit "Create Item", class: "btn btn-primary" %>
         <% end %>
     </div>
