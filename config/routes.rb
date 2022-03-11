@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   get '/new_locations', to:'locations#new'
   post '/locations', to:'locations#create'
 
+  get '/suppliers', to:'suppliers#index'
+  get '/new_suppliers', to:'suppliers#new'
+  post '/suppliers', to:'suppliers#create'
+
+
 
   resources :users
 end

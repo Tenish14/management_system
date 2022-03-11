@@ -5,7 +5,7 @@ class CreateSuppliers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :username
       t.string :email
-      t.integer :phone_number
+      t.string :phone_number
 
       t.timestamps
     end

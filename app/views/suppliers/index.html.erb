@@ -1,0 +1,30 @@
+<% @title="Suppliers" %>
+<h1 class="center">Suppliers</h1>
+
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last_name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+        </tr>
+
+        <% @suppliers.each do |supplier| %>                    
+            <tr>
+                <td><%= supplier.id%></td>
+                <td><%= supplier.first_name%></td>
+                <td><%= supplier.last_name %></td>
+                <td><%= supplier.username%></td>
+                <td><%= supplier.email%></td>
+                <td><%= supplier.phone_number%></td>
+            </tr>
+        <% end %>                    
+    </table>
+
+    <% if logged_in? && current_user.role_id? %>
+        <%= link_to 'Add supplier', new_suppliers_path, class: 'btn btn-success' %>
+    <% end %>
+</div>
