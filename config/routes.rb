@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   get '/new_companies', to:'companies#new'
   post '/companies', to:'companies#create'
 
+  get '/locations', to:'locations#index'
+  get '/new_locations', to:'locations#new'
+  post '/locations', to:'locations#create'
+
 
   resources :users
 end
