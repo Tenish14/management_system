@@ -1,3 +1,3 @@
 class Role < ApplicationRecord
-    belongs_to :user, class_name: "User", optional: true
+    has_many :users
 end

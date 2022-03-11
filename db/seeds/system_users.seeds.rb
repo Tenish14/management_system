@@ -1,8 +1,9 @@
 
 
-Role.new(name: "Admin", description: "Office Admin")
+Role.new(name: "Admin", description: "Office Admin").save
 
-role = Role.find_by(id: 1)
+
+admin_role = Role.first
 
 User.where(username: 'Pos Admin').first_or_create! do |user|
     user.first_name = 'John'
@@ -10,6 +11,5 @@ User.where(username: 'Pos Admin').first_or_create! do |user|
     user.email = 'John@admin.com'
     user.password = 'q1w2e3r4'
     user.password_confirmation = 'q1w2e3r4'
-    user.admin = true
-    user.role_id = role.id 
+    user.role_id = admin_role.id
 end
