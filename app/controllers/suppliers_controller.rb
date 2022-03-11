@@ -21,7 +21,7 @@ class SuppliersController < ApplicationController
       private
         def supplier_params
           params.require(:supplier).permit(:first_name, :last_name, :username, 
-                                       :email, :phone_number)
+                                       :email, :phone_number, :supplier_id)
         end
 
 end

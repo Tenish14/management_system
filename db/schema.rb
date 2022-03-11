@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_11_074630) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_11_084234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_074630) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_suppliers_on_company_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_074630) do
 
   add_foreign_key "companies", "locations"
   add_foreign_key "items", "categories"
+  add_foreign_key "suppliers", "companies"
   add_foreign_key "users", "companies"
   add_foreign_key "users", "roles"
 end

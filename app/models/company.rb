@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
     belongs_to :location
     has_many :users
+    has_many :suppliers
     before_save { email.downcase! }
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

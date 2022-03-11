@@ -1,4 +1,5 @@
 class Supplier < ApplicationRecord
+    belongs_to :company
 
     before_save { email.downcase! }
 
@@ -12,4 +13,5 @@ class Supplier < ApplicationRecord
                                                 format: { with: VALID_EMAIL_REGEX },
                                                 uniqueness: true
     validates :phone_number, presence: true
+    validates :company_id, presence: true
 end

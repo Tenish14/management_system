@@ -21,6 +21,9 @@
             <%= f.label :phone_number %>
             <%= f.text_field :phone_number, class: 'form-control'%>
 
+            <%= f.label :Company%>
+            <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
+
             <%= f.submit "Create Supplier", class: "btn btn-primary" %>
         <% end %>
     </div>
