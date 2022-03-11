@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-    belongs_to :company, class_name: "Company", optional: true
+    has_one :company
 
     validates :address_1, presence: true
     validates :address_2, presence: true

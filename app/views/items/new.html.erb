@@ -18,6 +18,7 @@
             <%= f.label :price %>
             <%= f.number_field :price, class: 'form-control', step: :any %>
 
+            <%= f.label :Category%>
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
             <%= f.submit "Create Item", class: "btn btn-primary" %>

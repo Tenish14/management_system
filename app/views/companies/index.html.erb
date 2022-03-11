@@ -1,0 +1,27 @@
+<% @title="Companies" %>
+<h1 class="center">Companies</h1>
+
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Branch</th>
+            <th>Location Name</th>
+        </tr>
+
+        <% @companies.each do |company| %>                    
+            <tr>
+                <td><%= company.id%></td>
+                <td><%= company.name%></td>
+                <td><%= company.email %></td>
+                <td><%= company.phone_number%></td>
+                <td><%= company.branch%></td>
+                <td><%= company.location.name%></td>
+            </tr>
+        <% end %>                    
+    </table>
+    <%= link_to 'Add company', new_companies_path, class: 'btn btn-success' %>
+</div>

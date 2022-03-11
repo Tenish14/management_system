@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-    has_many :locations, foreign_key: "location_id"
+    belongs_to :location
     before_save { email.downcase! }
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -19,6 +19,7 @@
         <% if logged_in? && current_user.role.name == "Admin" %>
           <li><%= link_to "User",   users_path %></li>
           <li><%= link_to "Role",   roles_path %></li>
+          <li><%= link_to "Company",   companies_path %></li>
           <li><%= link_to "Category",   categories_path %></li>
           <li><%= link_to "Outlet",   '#' %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>

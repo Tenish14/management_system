@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_020836) do
   end
 
   create_table "locations", force: :cascade do |t|
+    t.string "name"
     t.string "address_1"
     t.string "address_2"
     t.integer "postcode"
