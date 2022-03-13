@@ -6,6 +6,10 @@ class Item < ApplicationRecord
     has_many :locations, through: :location_items
     has_many :companies, through: :location_items
 
+    has_many :supplier_items
+    has_many :locations, through: :supplier_items
+    has_many :suppliers, through: :supplier_items
+
 
     validates :name, presence: true, length: { maximum: 50}
     validates :description, presence: true, length: { maximum: 50 }
