@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_11_090224) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_053927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_090224) do
     t.integer "company_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["company_id"], name: "index_items_on_company_id"
+  end
+
+  create_table "location_items", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "location_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_location_items_on_company_id"
+    t.index ["item_id"], name: "index_location_items_on_item_id"
+    t.index ["location_id"], name: "index_location_items_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
