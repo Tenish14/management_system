@@ -7,6 +7,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Role Permission</th>
         </tr>
 
         <% @role.each do |role| %>                    
@@ -14,6 +15,7 @@
                 <td><%= role.id%></td>
                 <td><%= role.name%></td>
                 <td><%= role.description %></td>
+                <td><%= role.role_permission.authority %></td>
             </tr>
         <% end %>                    
     </table>

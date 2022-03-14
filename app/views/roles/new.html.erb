@@ -12,6 +12,9 @@
             <%= f.label :description %>
             <%= f.text_field :description, class: 'form-control' %>
 
+            <%= f.label :role_permission %>
+            <%= f.select :role_permission_id, RolePermission.all.pluck(:authority,:id),{prompt:'select'},{class: "form-control"}%>
+
             <%= f.submit "Create Role", class: "btn btn-primary" %>
         <% end %>
     </div>
