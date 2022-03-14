@@ -45,14 +45,15 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+# Add bootstrap-icon
+gem 'bootstrap-icons-helper'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 # Add bootstrap
 gem "bootstrap-sass"
 
-# Rails Admin
-gem 'rails_admin'
 
 gem "sassc-rails"
 

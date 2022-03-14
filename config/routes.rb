@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/cripsy_burger', as: 'rails_admin'
   root 'static_pages#home'
 
   get '/signup', to: 'users#new'
   get '/users', to:'users#index'
+  get 'users/:id', to: 'users#destroy'
+  delete 'users/:id', to: 'users#destroy', as: 'users_delete'
+
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -32,8 +34,6 @@ Rails.application.routes.draw do
   get '/suppliers', to:'suppliers#index'
   get '/new_suppliers', to:'suppliers#new'
   post '/suppliers', to:'suppliers#create'
-
-
 
   resources :users
 end
