@@ -4,7 +4,6 @@ class Item < ApplicationRecord
 
     has_many :location_items
     has_many :locations, through: :location_items
-    has_many :companies, through: :location_items
 
     has_many :supplier_items
     has_many :locations, through: :supplier_items

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_14_145908) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_16_094801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,8 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_145908) do
     t.string "branch"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "location_id"
-    t.index ["location_id"], name: "index_companies_on_location_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -65,6 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_145908) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_locations_on_company_id"
   end
 
   create_table "role_permissions", force: :cascade do |t|
@@ -120,9 +120,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_145908) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "companies", "locations"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "companies"
+  add_foreign_key "locations", "companies"
   add_foreign_key "roles", "role_permissions"
   add_foreign_key "suppliers", "companies"
   add_foreign_key "users", "companies"

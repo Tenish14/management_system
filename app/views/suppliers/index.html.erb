@@ -25,6 +25,6 @@
     </table>
 
     <% if logged_in? && current_user.role_id? %>
-        <%= link_to 'Add supplier', new_suppliers_path, class: 'btn btn-success' %>
+        <%= link_to 'Add supplier', new_supplier_path, class: 'btn btn-success' %>
     <% end %>
 </div>

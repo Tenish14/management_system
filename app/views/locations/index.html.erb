@@ -11,6 +11,7 @@
             <th>Postcode</th>
             <th>State</th>
             <th>Country</th>
+            <th>Company</th>
         </tr>
 
         <% @locations.each do |location| %>                    
@@ -22,11 +23,12 @@
                 <td><%= location.postcode%></td>
                 <td><%= location.state%></td>
                 <td><%= location.country%></td>
+                <td><%= location.company.name%></td>
             </tr>
         <% end %>                    
     </table>
 
     <% if logged_in? && current_user.role_id? %>
-        <%= link_to 'Add location', new_locations_path, class: 'btn btn-success' %>
+        <%= link_to 'Add location', new_location_path, class: 'btn btn-success' %>
     <% end %>
 </div>

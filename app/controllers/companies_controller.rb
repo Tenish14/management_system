@@ -4,6 +4,10 @@ class CompaniesController < ApplicationController
         @companies = Company.all
     end
 
+    def show
+        @company = Company.find(params[:id])
+    end
+
     def new
         @company = Company.new
     end
@@ -21,6 +25,6 @@ class CompaniesController < ApplicationController
     private
     def company_params
         params.require(:company).permit(:name, :email, :phone_number,
-                                        :branch, :location_id)
+                                        :branch)
     end
 end

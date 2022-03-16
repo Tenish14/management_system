@@ -1,8 +1,7 @@
 class Location < ApplicationRecord
-    has_one :company
+    belongs_to :company
 
     has_many :location_items
-    has_many :companies, through: :location_items
     has_many :items, through: :location_items
 
     has_many :supplier_items
@@ -14,4 +13,5 @@ class Location < ApplicationRecord
     validates :postcode, presence: true
     validates :state, presence: true
     validates :country, presence: true
+    validates :company_id, presence: true
 end

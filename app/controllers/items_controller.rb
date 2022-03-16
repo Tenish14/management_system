@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.new(item_params)
+        # Add location item
         if @item.save
           flash[:success] = "New item created"
           redirect_to items_path
@@ -23,4 +24,6 @@ class ItemsController < ApplicationController
           params.require(:item).permit(:name, :description, :quantity_stock, 
                                        :price, :category_id, :company_id)
         end
+
+        # location_item params
 end

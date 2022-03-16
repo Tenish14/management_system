@@ -27,6 +27,6 @@
     </table>
 
     <% if logged_in? && current_user.role_id? %>
-        <%= link_to 'Add Item', new_items_path, class: 'btn btn-success' %>
+        <%= link_to 'Add Item', new_item_path, class: 'btn btn-success' %>
     <% end %>
 </div>

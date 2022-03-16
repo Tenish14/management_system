@@ -1,13 +1,13 @@
 class Company < ApplicationRecord
-    belongs_to :location
+    has_many :locations
 
     has_many :users
     has_many :suppliers
     has_many :items
 
-    has_many :location_items
-    has_many :locations, through: :location_items
-    has_many :items, through: :location_items
+    # has_many :location_items
+    # has_many :locations, through: :location_items
+    # has_many :items, through: :location_items
 
 
     before_save { email.downcase! }
@@ -21,5 +21,4 @@ class Company < ApplicationRecord
                                                 uniqueness: true
     validates :phone_number, presence: true
     validates :branch, presence: true
-    validates :location_id, presence: true
 end
