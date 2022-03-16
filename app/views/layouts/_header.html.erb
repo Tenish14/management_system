@@ -15,8 +15,8 @@
       </div>
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
-        <li><%= link_to "Home",   items_path %></li>
-        <% if logged_in? && current_user.role.name == "Admin" %>
+        <li><%= link_to "Item",   items_path %></li>
+        <% if logged_in? && current_user.role.role_permission.authority == "Owner" %>
           <li><%= link_to "User",   users_path %></li>
           <li><%= link_to "Role",   roles_path %></li>
           <li><%= link_to "Company",   companies_path %></li>
@@ -24,8 +24,16 @@
           <li><%= link_to "Category",   categories_path %></li>
           <li><%= link_to "Supplier",   suppliers_path %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
-        <% elsif logged_in? && current_user.role.name != "Admin" %>
+        <% elsif logged_in? && current_user.role.role_permission.authority == "Manager" %>
+          <li><%= link_to "User",   users_path %></li>
+          <li><%= link_to "Role",   roles_path %></li>
+          <li><%= link_to "Company",   companies_path %></li>
+          <li><%= link_to "Location",   locations_path %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% elsif logged_in? && current_user.role.role_permission.authority == "Employee" %>
+          <li><%= link_to "User",   users_path %></li>
           <li><%= link_to "Category",   categories_path %></li>
+          <li><%= link_to "Supplier",   suppliers_path %></li>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>

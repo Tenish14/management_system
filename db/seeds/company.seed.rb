@@ -1,11 +1,13 @@
-Location.new(name: "Main", address_1: "2 Lebuh Acheh", address_2: "Lebuh Acheh Georgetown", postcode: 10300, state: "Penang", country: "Malaysia").save
+Location.new(name: "Geogetown", address_1: "2 Lebuh Acheh", address_2: "Lebuh Acheh Georgetown", postcode: 10300, state: "Penang", country: "Malaysia").save
+Location.new(name: "Butterworth", address_1: "420 Lorong Bagan 1", address_2: "Taman Bagan Jaya", postcode: 14200, state: "Johor", country: "Malaysia").save
 
-location = Location.first
+first_location = Location.first
+second_location = Location.second
 
 
 Company.where(name: 'John Market').first_or_create! do |company|
-    company.email = "john@owner.com"
+    company.email = "john@georgetown.com"
     company.phone_number = "017-5179520"
     company.branch = "Georgetown"
-    company.location_id = location.id
+    company.location_id = first_location.id
 end
