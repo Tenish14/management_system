@@ -18,9 +18,6 @@
             <%= f.label :branch %>
             <%= f.text_field :branch, class: 'form-control' %>
 
-            <%= f.label :location %>
-            <%= f.select :location_id,Location.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
-
             <%= f.submit "Create Company", class: "btn btn-primary" %>
         <% end %>
     </div>

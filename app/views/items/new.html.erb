@@ -6,6 +6,9 @@
         <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
             <%= render 'shared/error_messages' , object: f.object%>
 
+            <%= f.label :Company%>
+            <%= f.text_field :company_id, value: current_user.company.id, class: 'form-control', :readonly => true%>
+            
             <%= f.label :name %>
             <%= f.text_field :name, class: 'form-control' %>
 
@@ -21,8 +24,11 @@
             <%= f.label :Category%>
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
-            <%= f.label :Company%>
-            <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
+            <%= f.label :Location%>
+            <% current_user.company.locations.each do |location| %>
+                <%= check_box_tag "location_ids[]", location.id %>
+                <%= location.name %>
+            <% end %>
 
             <%= f.submit "Create Item", class: "btn btn-primary" %>
         <% end %>

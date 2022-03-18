@@ -1,0 +1,18 @@
+<%= @item.name %>
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Locations</th>
+
+        </tr>
+
+        <% @item.locations.each do |location| %>                    
+            <tr>
+                <td><%= location.name %></td>
+                <td><%= location.address_1 %></td>
+                <td><%= location.company.name %></td>
+            </tr>
+        <% end %>                    
+    </table>

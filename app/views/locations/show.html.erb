@@ -1,0 +1,23 @@
+<%= @location.name %>
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Price</th>
+
+        </tr>
+
+        <% @location.items.each do |item| %>  
+            <% location_item = LocationItem.where(location_id: @location.id, item_id: item.id).first %>                  
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.description%></td>
+                <td><%= location_item.price %></td>
+                <td><%= location_item.cost %></td>
+                <td><%= location_item.price %></td>
+            </tr>
+        <% end %>                    
+    </table>

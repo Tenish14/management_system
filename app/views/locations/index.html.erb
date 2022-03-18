@@ -12,18 +12,20 @@
             <th>State</th>
             <th>Country</th>
             <th>Company</th>
+            <th>Items count</th>
         </tr>
 
         <% @locations.each do |location| %>                    
             <tr>
                 <td><%= location.id%></td>
-                <td><%= location.name%></td>
+                <td><%= link_to location.name, location_path(location)%></td>
                 <td><%= location.address_1 %></td>
                 <td><%= location.address_2%></td>
                 <td><%= location.postcode%></td>
                 <td><%= location.state%></td>
                 <td><%= location.country%></td>
                 <td><%= location.company.name%></td>
+                <td><%= location.items.count%></td>
             </tr>
         <% end %>                    
     </table>
