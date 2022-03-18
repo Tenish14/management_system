@@ -1,9 +1,14 @@
+<% @title=@item.id%>
 <%= @item.name %>
 <div class="container">
     <table class="table table-hover">
         <tr>
             <th>Name</th>
-            <th>Description</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>Postcode</th>
+            <th>State</th>
+            <th>Country</th>
             <th>Locations</th>
 
         </tr>
@@ -12,6 +17,10 @@
             <tr>
                 <td><%= location.name %></td>
                 <td><%= location.address_1 %></td>
+                <td><%= location.address_2 %></td>
+                <td><%= location.postcode %></td>
+                <td><%= location.state %></td>
+                <td><%= location.country %></td>
                 <td><%= location.company.name %></td>
             </tr>
         <% end %>                    

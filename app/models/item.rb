@@ -1,14 +1,14 @@
 class Item < ApplicationRecord
-    attr_accessor :location
+    attr_accessor :location_ids
     belongs_to :category
     belongs_to :company
 
     has_many :location_items
     has_many :locations, through: :location_items
 
-    # has_many :supplier_items
+    has_many :supplier_items
     # has_many :locations, through: :supplier_items
-    # has_many :suppliers, through: :supplier_items
+    has_many :suppliers, through: :supplier_items
 
 
     validates :name, presence: true, length: { maximum: 50}
@@ -17,5 +17,5 @@ class Item < ApplicationRecord
     validates :price, presence: true
     validates :category_id, presence: true
     validates :company_id,presence: true
-    # validates :location_ids, acceptance: {accept: true}
+    validates :location_ids, acceptance: { accept: ['TRUE', 'accepted'] }
 end

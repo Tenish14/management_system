@@ -10,16 +10,18 @@
             <th>Username</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Company Name</th>
         </tr>
 
         <% @suppliers.each do |supplier| %>                    
             <tr>
                 <td><%= supplier.id%></td>
-                <td><%= supplier.first_name%></td>
+                <td><%= link_to supplier.username, supplier_path(supplier)%></td>
                 <td><%= supplier.last_name %></td>
                 <td><%= supplier.username%></td>
                 <td><%= supplier.email%></td>
                 <td><%= supplier.phone_number%></td>
+                <td><%= supplier.company.name%></td>
             </tr>
         <% end %>                    
     </table>

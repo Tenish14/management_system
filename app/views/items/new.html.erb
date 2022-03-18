@@ -25,10 +25,12 @@
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
             <%= f.label :Location%>
-            <% current_user.company.locations.each do |location| %>
-                <%= check_box_tag "location_ids[]", location.id %>
-                <%= location.name %>
-            <% end %>
+            <div class="checkbox inline">
+                <% current_user.company.locations.each do |location| %>
+                    <%= check_box_tag "location_ids[]", location.id %>
+                    <%= location.name %><br>
+                <% end %>
+            </div>
 
             <%= f.submit "Create Item", class: "btn btn-primary" %>
         <% end %>

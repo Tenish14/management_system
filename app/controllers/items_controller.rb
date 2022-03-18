@@ -33,6 +33,4 @@ class ItemsController < ApplicationController
                                        :price, :category_id, :company_id, location_ids: [])
         end
 
-        # location_item params
-
 end

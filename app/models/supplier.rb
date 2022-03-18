@@ -1,11 +1,11 @@
 class Supplier < ApplicationRecord
+    attr_accessor :items_ids
+    attr_readonly :company_id
     belongs_to :company
 
     has_many :supplier_items
     has_many :items, through: :supplier_items
-    has_many :locations, through: :supplier_items
-
-
+    # has_many :locations, through: :supplier_items
 
     before_save { email.downcase! }
 
