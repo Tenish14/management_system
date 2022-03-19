@@ -14,4 +14,5 @@ class Location < ApplicationRecord
     validates :state, presence: true
     validates :country, presence: true
     validates :company_id, presence: true
+    validates :location_code, presence: true
 end

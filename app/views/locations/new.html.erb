@@ -24,6 +24,9 @@
             <%= f.label :country %>
             <%= f.text_field :country, class: 'form-control' %>
 
+            <%= f.label :location_code%>
+            <%= f.text_field :location_code, class: 'form-control' %>
+
             <%= f.label :Company%>
             <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
