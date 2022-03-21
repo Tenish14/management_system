@@ -1,8 +1,11 @@
 <% @title=@item.id%>
-<%= @item.name %>
+<h1><%= @item.name %></h1>
 <div class="container">
+    <h3>Location</h3>
     <table class="table table-hover">
         <tr>
+            <th>Location Id</th>
+            <th>Location Code</th>
             <th>Name</th>
             <th>Address 1</th>
             <th>Address 2</th>
@@ -10,11 +13,12 @@
             <th>State</th>
             <th>Country</th>
             <th>Locations</th>
-
         </tr>
 
         <% @item.locations.each do |location| %>                    
             <tr>
+                <td><%= location.id %></td>
+                <td><%= location.location_code %></td>
                 <td><%= location.name %></td>
                 <td><%= location.address_1 %></td>
                 <td><%= location.address_2 %></td>
@@ -23,5 +27,27 @@
                 <td><%= location.country %></td>
                 <td><%= location.company.name %></td>
             </tr>
-        <% end %>                    
+        <% end %>  
     </table>
+</div>
+
+<div class = "container">
+    <h3>Location Item Price</h3>
+    <table class = "table table-hover">
+            <tr>
+                <th>Location Id</th>
+                <th>Price</th>
+                <th>Cost</th>
+                <th>Profit</th>
+            </tr>
+
+            <% @item.location_items.each do |location_item| %>                    
+                <tr>
+                    <td><%= location_item.location_id %></td>
+                    <td><%= location_item.price %></td>
+                    <td><%= location_item.cost %></td>
+                    <td><%= location_item.profit %></td>
+                </tr>
+            <% end %>   
+    </table>
+</div>

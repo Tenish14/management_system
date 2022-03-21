@@ -54,12 +54,17 @@ gem 'bootstrap-icons-helper'
 # Add bootstrap
 gem "bootstrap-sass"
 
-
+# Add sassc-rails
 gem "sassc-rails"
 
+# Add webpacker
 gem "webpacker", "~> 5.4"
 
+# Add pry debugger
 gem 'pry-rails', :group => :development
+
+# Add jquery-rails
+gem 'jquery-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

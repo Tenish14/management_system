@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-    attr_accessor :location_ids
+    attr_accessor :location_ids, :outlet_price, :cost, :profit
     belongs_to :category
     belongs_to :company
 

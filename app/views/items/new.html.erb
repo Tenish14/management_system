@@ -27,8 +27,21 @@
             <%= f.label :Location%>
             <div class="checkbox inline">
                 <% current_user.company.locations.each do |location| %>
-                    <%= check_box_tag "location_ids[]", location.id %>
-                    <%= location.name %><br>
+                    <div id = "checkboxes">
+                        <%= check_box_tag "location_ids[]", location.id %>
+                        <%= location.name %><br>
+                    </div>
+
+                    <div id= "price">
+                        <%= f.label :outlet_price%>
+                        <%= f.number_field :outlet_price, class: 'form-control', step: :any%>
+
+                        <%= f.label :cost %>
+                        <%= f.number_field :cost, class: 'form-control', step: :any %>
+
+                        <%= f.label :profit %>
+                        <%= f.number_field :profit, class: 'form-control', step: :any %>
+                    </div>
                 <% end %>
             </div>
 
@@ -36,3 +49,14 @@
         <% end %>
     </div>
 </div>
+
+<script type="text/javascript">
+    var checkbox = document.querySelectorAll('div#checkboxes')
+    var input_checkbox = document.querySelectorAll('div#price')
+
+    $(input_checkbox).hide()
+    $(checkbox).click(function(){
+        $(this).next(input_checkbox).toggle()
+    })
+
+</script>
