@@ -64,7 +64,7 @@ gem "webpacker", "~> 5.4"
 gem 'pry-rails', :group => :development
 
 # Add jquery-rails
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
