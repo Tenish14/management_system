@@ -31,7 +31,8 @@
             <%= f.label :country, class: 'required' %>
             <%= f.text_field :country, class: 'form-control', required: true %>
 
-            <%= f.submit "Update Item", class: "btn btn-primary" %>
+            <%= f.submit "Save Changes", class: "btn btn-primary" %>
+            <%= link_to 'Back', locations_path, class: 'btn btn-success', style: 'width: 39.7em' %>
         <% end %>
     </div>
 </div>

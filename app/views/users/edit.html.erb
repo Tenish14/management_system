@@ -31,6 +31,7 @@
             <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
             <%= f.submit "Save changes", class: "btn btn-primary" %>
+            <%= link_to 'Back', users_path, class: 'btn btn-success', style: 'width: 39.7em' %>
         <% end %>
     </div>
 </div>ˇ
