@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+    before_action :current_location, only: [:show, :edit, :update, :destroy]
 
     def index
         @locations = Location.all
@@ -9,16 +10,32 @@ class LocationsController < ApplicationController
     end
 
     def show
-        @location = Location.find(params[:id])
       end
 
     def create
         @location = Location.new(location_params)
         if @location.save
             flash[:success] = "New location created"
-            redirect_to locations_path
+            redirect_to location_path(@location)
         else
             render 'new'
+        end
+    end
+
+    def edit
+    end
+
+    def update
+        if @location.update(location_params)
+            flash[:success] = "Location Updated"
+            redirect_to location_path(@location)
+        end
+    end
+    
+    def destroy
+        if @location.destroy
+            flash[:success] = "Location Deleted"
+            redirect_to locations_path
         end
     end
 
@@ -26,5 +43,9 @@ class LocationsController < ApplicationController
         def location_params
             params.require(:location).permit(:name, :address_1, :address_2, 
                                              :postcode, :state, :country, :company_id, :location_code)
+        end
+
+        def current_location
+            @location = Location.find(params[:id])
         end
 end

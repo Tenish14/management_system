@@ -1,0 +1,21 @@
+<% @title="Edit Role" %>
+<h1 class="center">Edit role</h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @role, local: true, data: { turbo: false }) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.label :name, class: 'required' %>
+            <%= f.text_field :name, class: 'form-control', required: true %>
+
+            <%= f.label :description, class: 'required' %>
+            <%= f.text_field :description, class: 'form-control', required: true %>
+
+            <%= f.label :role_permission, class: 'required' %>
+            <%= f.select :role_permission_id, RolePermission.all.pluck(:authority,:id),{prompt:'select'},{class: "form-control"} %>
+
+            <%= f.submit "Update Role", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

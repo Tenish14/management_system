@@ -1,5 +1,5 @@
 class Role < ApplicationRecord
-    has_many :users
+    has_many :users, dependent: :nullify
     belongs_to :role_permission
 
     validates :name, presence: true

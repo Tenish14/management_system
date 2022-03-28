@@ -3,9 +3,6 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   get '/users', to:'users#index'
-
-  get 'users/:id', to: 'users#destroy'
-  delete 'users/:id', to: 'users#destroy', as: 'user_delete'
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

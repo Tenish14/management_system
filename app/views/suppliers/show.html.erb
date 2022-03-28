@@ -10,14 +10,14 @@
             <h5>Company Name: <%= @supplier.company.name %></h5>
         </div>
     </div>
-<%= @supplier.username %>
-<div class="container">
     <table class="table table-hover">
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Cost</th>
+            <th>Profit</th>
             <th>Category Name</th>
 
         </tr>
@@ -28,6 +28,8 @@
                 <td><%= item.description %></td>
                 <td><%= item.quantity_stock %></td>
                 <td><%= item.price %></td>
+                <td><%= item.cost %></td>
+                <td><%= item.profit %></td>
                 <td><%= item.category.name %></td>
             </tr>
         <% end %>                    
