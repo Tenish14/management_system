@@ -1,4 +1,15 @@
-<% @title=@supplier.id%>
+<div class="container">
+    <div class="row" >
+        <div class="col-md-6" >
+            <h1>Supplier Details</h1>
+            <h5>First Name: <%= @supplier.first_name %></h5>
+            <h5>Last Name: <%= @supplier.last_name %></h5>
+            <h5>Username: <%= @supplier.username %></h5>
+            <h5>Email: <%= @supplier.email %></h5>
+            <h5>Phone Number: <%= @supplier.phone_number %></h5>
+            <h5>Company Name: <%= @supplier.company.name %></h5>
+        </div>
+    </div>
 <%= @supplier.username %>
 <div class="container">
     <table class="table table-hover">

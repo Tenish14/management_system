@@ -9,10 +9,10 @@ class Location < ApplicationRecord
     # has_many :items, through: :supplier_items
 
     validates :address_1, presence: true
-    validates :address_2, presence: true
+    # validates :address_2, presence: true
     validates :postcode, presence: true
     validates :state, presence: true
     validates :country, presence: true
     validates :company_id, presence: true
-    validates :location_code, presence: true
+    validates :location_code, presence: true, uniqueness: true
 end

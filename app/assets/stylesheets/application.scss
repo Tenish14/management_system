@@ -81,3 +81,8 @@ input {
 .checkbox {
   margin-left: 20px;
 }
+
+.required:after {
+  content: " *";
+  color: rgb(214, 51, 51);
+}

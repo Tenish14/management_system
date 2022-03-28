@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :current_user, only: [:show, :edit, :update, :destroy]
   
   def show
-    @user = User.find(params[:id])
+
   end
 
   def index
@@ -23,11 +24,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to users_path
@@ -37,8 +36,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-
     if @user.destroy
       flash[:success] = "User deleted"
         redirect_to users_path
@@ -49,6 +46,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :username, 
                                    :email, :password, :password_confirmation, :role_id, :company_id)
+    end
+
+    def current_user
+      @user = User.find(params[:id])
     end
 
 end

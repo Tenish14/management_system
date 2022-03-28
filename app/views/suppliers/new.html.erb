@@ -6,25 +6,26 @@
         <%= form_with(model: @supplier, local: true, data: { turbo: false }) do |f| %>
             <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :Company%>
-            <%= f.text_field :company_id, value: current_user.company.id, class: 'form-control', :readonly => true%>
+            <%= f.label :Company, class: 'required'%>
+            <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+            <%= f.hidden_field :company_id, value: current_user.company.id %>
 
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: 'form-control' %>
+            <%= f.label :first_name, class: 'required' %>
+            <%= f.text_field :first_name, class: 'form-control', required: true %>
 
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: 'form-control' %>
+            <%= f.label :last_name, class: 'required' %>
+            <%= f.text_field :last_name, class: 'form-control', required: true %>
 
-            <%= f.label :username %>
-            <%= f.text_field :username, class: 'form-control' %>
+            <%= f.label :username, class: 'required' %>
+            <%= f.text_field :username, class: 'form-control', required: true %>
 
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.label :email, class: 'required' %>
+            <%= f.email_field :email, class: 'form-control', required: true %>
 
-            <%= f.label :phone_number %>
-            <%= f.text_field :phone_number, class: 'form-control'%>
+            <%= f.label :phone_number, class: 'required' %>
+            <%= f.text_field :phone_number, class: 'form-control', required: true%>
 
-            <%= f.label :Items %>
+            <%= f.label :Items, class: 'required' %>
             <div class = "checkbox inline">
                 <% current_user.company.items.each do |item| %>
                     <%= check_box_tag "items_ids[]", item.id %>

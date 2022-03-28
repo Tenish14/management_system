@@ -6,41 +6,48 @@
         <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
             <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :Company%>
-            <%= f.text_field :company_id, value: current_user.company.id, class: 'form-control', :readonly => true%>
+            <%= f.label :Company, class: 'required' %>
+            <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+            <%= f.hidden_field :company_id, value: current_user.company.id %>
             
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.label :name, class: 'required' %>
+            <%= f.text_field :name, class: 'form-control', required: true %>
 
-            <%= f.label :description %>
-            <%= f.text_field :description, class: 'form-control' %>
+            <%= f.label :description, class: 'required' %>
+            <%= f.text_field :description, class: 'form-control', required: true  %>
 
-            <%= f.label :quantity_stock %>
-            <%= f.number_field :quantity_stock, class: 'form-control' %>
+            <%= f.label :quantity_stock , class: 'required'%>
+            <%= f.number_field :quantity_stock, class: 'form-control', required: true  %>
 
-            <%= f.label :price %>
-            <%= f.number_field :price, class: 'form-control', step: :any %>
+            <%= f.label :price, class: 'required' %>
+            <%= f.number_field :price, class: 'form-control', step: :any, required: true  %>
 
-            <%= f.label :Category%>
+            <%= f.label :cost, class: 'required' %>
+            <%= f.number_field :cost, class: 'form-control', step: :any, required: true  %>
+
+            <%= f.label :profit, class: 'required' %>
+            <%= f.number_field :profit, class: 'form-control', step: :any, required: true  %>
+
+            <%= f.label :category, class: 'required'%>
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
-            <%= f.label :Location%>
+            <%= f.label :Location, class: 'required'%>
             <div class="checkbox inline">
                 <% current_user.company.locations.each do |location| %>
                     <div id = "checkboxes">
-                        <%= check_box_tag "location_ids[]", location.id %>
+                        <%= check_box_tag "[location_item][location_ids][]", location.id%>
                         <%= location.name %><br>
                     </div>
-
+                
                     <div id= "price">
-                        <%= f.label :outlet_price%>
-                        <%= f.number_field :outlet_price, class: 'form-control', step: :any%>
+                        <%= f.label :outlet_price , class: 'required'%>
+                        <%= number_field_tag "[location_item][outlet_prices][]"%>
 
-                        <%= f.label :cost %>
-                        <%= f.number_field :cost, class: 'form-control', step: :any %>
+                        <%= f.label :outlet_cost , class: 'required'%>
+                        <%= number_field_tag "[location_item][outlet_costs][]" %>
 
-                        <%= f.label :profit %>
-                        <%= f.number_field :profit, class: 'form-control', step: :any %>
+                        <%= f.label :outlet_profit, class: 'required' %>
+                        <%= number_field_tag "[location_item][outlet_profits][]" %>
                     </div>
                 <% end %>
             </div>

@@ -6,29 +6,31 @@
         <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
             <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: 'form-control' %>
+           
+            <%= f.label :first_name,  class: 'required' %>
+            <%= f.text_field :first_name, class: 'form-control', required: true %>
 
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: 'form-control' %>
+            <%= f.label :last_name,  class: 'required' %>
+            <%= f.text_field :last_name, class: 'form-control', required: true%>
 
-            <%= f.label :username %>
-            <%= f.text_field :username, class: 'form-control' %>
+            <%= f.label :username, class: 'required' %>
+            <%= f.text_field :username, class: 'form-control', required: true %>
 
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.label :email, class: 'required' %>
+            <%= f.email_field :email, class: 'form-control', required: true %>
 
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control'%>
+            <%= f.label :password, class: 'required' %>
+            <%= f.password_field :password, class: 'form-control', required: true%>
 
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, class: 'form-control'%>
+            <%= f.label :password_confirmation, class: 'required' %>
+            <%= f.password_field :password_confirmation, class: 'form-control', required: true%>
 
-            <%= f.label :Role%>
+            <%= f.label :Role, class: 'required'%>
             <%= f.select :role_id,Role.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
-            <%= f.label :Company%>
+            <%= f.label :Company,  class: 'required' %>
             <%= f.select :company_id,Company.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
+
 
             <%= f.submit "Create account", class: "btn btn-primary" %>
         <% end %>

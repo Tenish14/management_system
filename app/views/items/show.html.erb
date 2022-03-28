@@ -1,17 +1,22 @@
 <% @title=@item.id%>
-<h1><%= @item.name %></h1>
 <div class="container">
-    <h3>Location</h3>
+    <div class="row" >
+        <div class="col-md-6" >
+            <h1>Item Details</h1>
+            <h5>Name: <%= @item.name %></h5>
+            <h5>Description: <%= @item.description %></h5>
+            <h5>Price: <%= @item.price %></h5>
+            <h5>Cost: <%= @item.cost %></h5>
+            <h5>Profit: <%= @item.profit %></h5>
+        </div>
+    </div>
+
+    <h3>Item price in other location</h3>
     <table class="table table-hover">
         <tr>
             <th>Location Id</th>
             <th>Location Code</th>
             <th>Name</th>
-            <th>Address 1</th>
-            <th>Address 2</th>
-            <th>Postcode</th>
-            <th>State</th>
-            <th>Country</th>
             <th>Locations</th>
             <th>Outlet Price</th>
             <th>Cost</th>
@@ -24,15 +29,10 @@
                 <td><%= location.id %></td>
                 <td><%= location.location_code %></td>
                 <td><%= location.name %></td>
-                <td><%= location.address_1 %></td>
-                <td><%= location.address_2 %></td>
-                <td><%= location.postcode %></td>
-                <td><%= location.state %></td>
-                <td><%= location.country %></td>
                 <td><%= location.company.name %></td>
-                <td><%= location_item.price %></td>
-                <td><%= location_item.cost %></td>
-                <td><%= location_item.profit %></td>
+                <td><%= location_item.outlet_price %></td>
+                <td><%= location_item.outlet_cost %></td>
+                <td><%= location_item.outlet_profit %></td>
             </tr>
         <% end %>  
     </table>

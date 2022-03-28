@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_19_042826) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_27_043501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_19_042826) do
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "company_id"
+    t.decimal "cost"
+    t.decimal "profit"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["company_id"], name: "index_items_on_company_id"
   end
@@ -48,9 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_19_042826) do
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "price"
-    t.decimal "cost"
-    t.decimal "profit"
+    t.decimal "outlet_price"
+    t.decimal "outlet_cost"
+    t.decimal "outlet_profit"
     t.index ["item_id"], name: "index_location_items_on_item_id"
     t.index ["location_id"], name: "index_location_items_on_location_id"
   end
