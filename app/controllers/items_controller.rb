@@ -15,13 +15,16 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # params[:location_item].each do |i|
+      params[:location_item][:location_ids].each do |location_id|
+        outlet_prices = params[:location_item][:outlet_prices]
+        outlet_costs = params[:location_item][:outlet_costs]
+        outlet_profits = params[:location_item][:outlet_profits]
         # binding.pry
-        # @location_item = LocationItem.new(location_id: i.location_id, item_id: @item.id, outlet_price: i.outlet_price, outlet_cost:i.outlet_cost, outlet_profit: i.outlet_profit)
-        # @location_item.save
-      # end 
+        @location_item = LocationItem.new(location_id: location_id, item_id: @item.id, outlet_price: outlet_prices["#{location_id}"][0].to_i, outlet_cost:outlet_costs["#{location_id}"][0].to_i, outlet_profit: outlet_profits["#{location_id}"][0].to_i)
+        @location_item.save
+      end 
       flash[:success] = "New item created"
-      redirect_to items_path
+      redirect_to item_path(@item)
     else
       render 'new'
     end
@@ -35,7 +38,7 @@ class ItemsController < ApplicationController
       # @location_item = LocationItem.find(params[:id])
       # @location_item = LocationItem.update(location_id: location_id, item_id: @item.id, price: @item.outlet_price, cost: @item.cost, profit: @item.profit)
       flash[:success] = "Items updated"
-      redirect_to items_path
+      redirect_to item_path(@item)
     else
       render 'edit'
     end

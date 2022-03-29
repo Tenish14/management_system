@@ -20,7 +20,7 @@
             <%= f.number_field :quantity_stock, class: 'form-control', required: true  %>
 
             <%= f.label :price, class: 'required' %>
-            <%= f.number_field :price, class: 'form-control', step: :any, required: true  %>
+            <%= f.number_field :price, class: 'form-control', step: :any, required: true %>
 
             <%= f.label :cost, class: 'required' %>
             <%= f.number_field :cost, class: 'form-control', step: :any, required: true  %>
@@ -41,13 +41,13 @@
                 
                     <div id= "price">
                         <%= f.label :outlet_price , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_prices][]"%>
+                        <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", step: :any %>
 
                         <%= f.label :outlet_cost , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_costs][]" %>
+                        <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", step: :any %>
 
                         <%= f.label :outlet_profit, class: 'required' %>
-                        <%= number_field_tag "[location_item][outlet_profits][]" %>
+                        <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", step: :any %>
                     </div>
                 <% end %>
             </div>
@@ -67,5 +67,25 @@
     $(checkbox).click(function(){
         $(this).next(input_checkbox).toggle()
     })
+
+    $('#item_price, #item_cost').change(function() {
+        var price = parseFloat($('#item_price').val());
+        var cost = parseFloat($('#item_cost').val());
+        var profit = (price - cost).toFixed(2);
+        // debugger;
+        $('#item_profit').val(profit)
+        var new_profit = parseFloat($('#item_profit').val())
+        
+        var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
+        console.log(oulet_price)
+
+        var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
+        var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
+        $(outlet_price).val(price)
+        $(outlet_cost).val(cost)
+        $(outlet_profit).val(profit)
+    })
+
+    
 
 </script>
