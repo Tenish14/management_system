@@ -5,10 +5,13 @@
     <table class="table table-hover">
         <tr>
             <th>Id</th>
+            <th>Item Code</th>
             <th>Item Name</th>
             <th>Description</th>
             <th>Quantity Stock</th>
             <th>Price</th>
+            <th>Cost</th>
+            <th>Profit</th>
             <th>Category Name</th>
             <th>Company Name</th>
             <th>Edit</th>
@@ -18,10 +21,13 @@
         <% @items.each do |item| %>                    
             <tr>
                 <td><%= item.id%></td>
+                <td><%= item.item_code%></td>
                 <td><%= link_to item.name, item_path(item)%></td>
                 <td><%= item.description %></td>
                 <td><%= item.quantity_stock%></td>
                 <td><%= item.price%></td>
+                <td><%= item.cost%></td>
+                <td><%= item.profit%></td>
                 <td><%= item.category.name%></td>
                 <td><%= item.company.name%></td>
                 <td>

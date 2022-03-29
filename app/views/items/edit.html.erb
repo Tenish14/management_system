@@ -1,4 +1,4 @@
-<% @title="Add Item" %>
+<% @title="Edit Item" %>
 <h1 class="center">Edit Item</h1>
 
 <div class="row">
@@ -6,47 +6,58 @@
         <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
             <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :Company%>
-            <%= f.text_field :company_id, value: current_user.company.id, class: 'form-control', :readonly => true%>
+            <%= f.label :Company, class: 'required' %>
+            <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+            <%= f.hidden_field :company_id, value: current_user.company.id %>
             
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.label :item_code, class: 'required' %>
+            <%= f.text_field :item_code, class: 'form-control', required: true %>
 
-            <%= f.label :description %>
-            <%= f.text_field :description, class: 'form-control' %>
+            <%= f.label :name, class: 'required' %>
+            <%= f.text_field :name, class: 'form-control', required: true %>
 
-            <%= f.label :quantity_stock %>
-            <%= f.number_field :quantity_stock, class: 'form-control' %>
+            <%= f.label :description, class: 'required' %>
+            <%= f.text_field :description, class: 'form-control', required: true  %>
 
-            <%= f.label :price %>
-            <%= f.number_field :price, class: 'form-control', step: :any %>
+            <%= f.label :quantity_stock , class: 'required'%>
+            <%= f.number_field :quantity_stock, class: 'form-control', required: true  %>
 
-            <%= f.label :Category%>
+            <%= f.label :price, class: 'required' %>
+            <%= f.number_field :price, class: 'form-control', step: :any, required: true %>
+
+            <%= f.label :cost, class: 'required' %>
+            <%= f.number_field :cost, class: 'form-control', step: :any, required: true  %>
+
+            <%= f.label :profit, class: 'required' %>
+            <%= f.number_field :profit, class: 'form-control', step: :any, required: true  %>
+
+            <%= f.label :category, class: 'required'%>
             <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
-            <%= f.label :Location%>
+            <%= f.label :Location, class: 'required'%>
             <div class="checkbox inline">
                 <% current_user.company.locations.each do |location| %>
                     <div id = "checkboxes">
-                        <%= check_box_tag "location_ids[]", location.id %>
+                        <%= check_box_tag "[location_item][location_ids][]", location.id%>
                         <%= location.name %><br>
                     </div>
-
+                
                     <div id= "price">
-                        <%= f.label :outlet_price%>
-                        <%= f.number_field :outlet_price, class: 'form-control', step: :any%>
+                        <%= f.label :outlet_price , class: 'required'%>
+                        <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", nil, step: :any %>
 
-                        <%= f.label :cost %>
-                        <%= f.number_field :outlet_cost, class: 'form-control', step: :any %>
+                        <%= f.label :outlet_cost , class: 'required'%>
+                        <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", nil, step: :any %>
 
-                        <%= f.label :profit %>
-                        <%= f.number_field :outlet_profit, class: 'form-control', step: :any %>
+                        <%= f.label :outlet_profit, class: 'required' %>
+                        <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", nil, step: :any %>
                     </div>
                 <% end %>
             </div>
 
             <%= f.submit "Save Changes", class: "btn btn-primary" %>
             <%= link_to 'Back', items_path, class: 'btn btn-success', style: 'width: 39.7em' %>
+
         <% end %>
     </div>
 </div>
@@ -59,5 +70,25 @@
     $(checkbox).click(function(){
         $(this).next(input_checkbox).toggle()
     })
+
+    $('#item_price, #item_cost').change(function() {
+        var price = parseFloat($('#item_price').val());
+        var cost = parseFloat($('#item_cost').val());
+        var profit = (price - cost).toFixed(2);
+        // debugger;
+        $('#item_profit').val(profit)
+        var new_profit = parseFloat($('#item_profit').val())
+        
+    //     var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
+    //     console.log(oulet_price)
+
+    //     var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
+    //     var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
+    //     $(outlet_price).val(price)
+    //     $(outlet_cost).val(cost)
+    //     $(outlet_profit).val(profit)
+    })
+
+    
 
 </script>

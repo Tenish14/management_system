@@ -10,6 +10,9 @@
             <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
             <%= f.hidden_field :company_id, value: current_user.company.id %>
             
+            <%= f.label :item_code, class: 'required' %>
+            <%= f.text_field :item_code, class: 'form-control', required: true %>
+
             <%= f.label :name, class: 'required' %>
             <%= f.text_field :name, class: 'form-control', required: true %>
 
@@ -41,13 +44,13 @@
                 
                     <div id= "price">
                         <%= f.label :outlet_price , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", step: :any %>
+                        <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", nil, step: :any %>
 
                         <%= f.label :outlet_cost , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", step: :any %>
+                        <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", nil, step: :any %>
 
                         <%= f.label :outlet_profit, class: 'required' %>
-                        <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", step: :any %>
+                        <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", nil, step: :any %>
                     </div>
                 <% end %>
             </div>
@@ -76,14 +79,14 @@
         $('#item_profit').val(profit)
         var new_profit = parseFloat($('#item_profit').val())
         
-        var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
-        console.log(oulet_price)
+        // var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
+        // console.log(oulet_price)
 
-        var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
-        var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
-        $(outlet_price).val(price)
-        $(outlet_cost).val(cost)
-        $(outlet_profit).val(profit)
+        // var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
+        // var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
+        // $(outlet_price).val(price)
+        // $(outlet_cost).val(cost)
+        // $(outlet_profit).val(profit)
     })
 
     
