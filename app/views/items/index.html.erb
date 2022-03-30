@@ -13,7 +13,6 @@
             <th>Cost</th>
             <th>Profit</th>
             <th>Category Name</th>
-            <th>Company Name</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -29,7 +28,6 @@
                 <td><%= item.cost%></td>
                 <td><%= item.profit%></td>
                 <td><%= item.category.name%></td>
-                <td><%= item.company.name%></td>
                 <td>
                     <%= link_to edit_item_path(item), class: "btn btn-default" do %>
                         <i class="glyphicon glyphicon-pencil"></i>

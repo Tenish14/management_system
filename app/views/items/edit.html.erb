@@ -41,17 +41,19 @@
                         <%= check_box_tag "[location_item][location_ids][]", location.id%>
                         <%= location.name %><br>
                     </div>
-                
-                    <div id= "price">
-                        <%= f.label :outlet_price , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", nil, step: :any %>
+                    <% location_item = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
+                        <% location_item.each do |location_item| %>
+                            <div id= "price">
+                                <%= f.label :outlet_price , class: 'required'%>
+                                <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", location_item.outlet_price, step: :any %>
 
-                        <%= f.label :outlet_cost , class: 'required'%>
-                        <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", nil, step: :any %>
+                                <%= f.label :outlet_cost , class: 'required'%>
+                                <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", location_item.outlet_cost, step: :any %>
 
-                        <%= f.label :outlet_profit, class: 'required' %>
-                        <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", nil, step: :any %>
-                    </div>
+                                <%= f.label :outlet_profit, class: 'required' %>
+                                <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", location_item.outlet_profit, step: :any %>
+                            </div>
+                        <% end %>
                 <% end %>
             </div>
 
@@ -79,8 +81,8 @@
         $('#item_profit').val(profit)
         var new_profit = parseFloat($('#item_profit').val())
         
-    //     var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
-    //     console.log(oulet_price)
+        // var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_ ')
+        // console.log(oulet_price)
 
     //     var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
     //     var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
