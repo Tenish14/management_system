@@ -74,21 +74,20 @@
     $('#item_price, #item_cost').change(function() {
         var price = parseFloat($('#item_price').val());
         var cost = parseFloat($('#item_cost').val());
-        var profit = (price - cost).toFixed(2);
+        var cal_profit = (price - cost).toFixed(2);
         // debugger;
-        $('#item_profit').val(profit)
-        var new_profit = parseFloat($('#item_profit').val())
+        $('#item_profit').val(cal_profit)
+        var profit = parseFloat($('#item_profit').val())
+
+        var outlet_price = $('input[name *= "outlet_price"]')
+        var outlet_cost = $('input[name *= "outlet_cost"]')
+        var outlet_profit = $('input[name *= "outlet_profit"]')
+
+        $(outlet_price).val(price)
+        $(outlet_cost).val(cost)
+        $(outlet_profit).val(profit)
         
-        // var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_')
-        // console.log(oulet_price)
-
-        // var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
-        // var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
-        // $(outlet_price).val(price)
-        // $(outlet_cost).val(cost)
-        // $(outlet_profit).val(profit)
     })
-
     
 
 </script>

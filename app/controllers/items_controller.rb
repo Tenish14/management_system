@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
         outlet_prices = params[:location_item][:outlet_prices]
         outlet_costs = params[:location_item][:outlet_costs]
         outlet_profits = params[:location_item][:outlet_profits]
-        # binding.pry
         @location_item = LocationItem.new(location_id: location_id, item_id: @item.id, outlet_price: outlet_prices["#{location_id}"][0].to_i, outlet_cost:outlet_costs["#{location_id}"][0].to_i, outlet_profit: outlet_profits["#{location_id}"][0].to_i)
         @location_item.save
       end 
