@@ -18,29 +18,31 @@
             <th>Delete</th>
         </tr>
 
-        <% @locations.each do |location| %>                    
-            <tr>
-                <td><%= location.id%></td>
-                <td><%= link_to location.location_code, location_path(location)%></td>
-                <td><%= location.name%></td>
-                <td><%= location.address_1 %></td>
-                <td><%= location.address_2%></td>
-                <td><%= location.postcode%></td>
-                <td><%= location.state%></td>
-                <td><%= location.country%></td>
-                <td><%= location.company.name%></td>
-                <td><%= location.items.count%></td>
-                <td>
-                    <%= link_to edit_location_path(location), class: "btn btn-default" do %>
-                        <i class="glyphicon glyphicon-pencil"></i>
-                    <% end %>
-                </td>
-                <td>
-                    <%= button_to location_path(location), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                         <i class="glyphicon glyphicon-remove"></i>
-                    <% end %> 
-                </td>
-            </tr>
+        <% @locations.each do |location| %>  
+            <% if current_user.company_id == location.company_id %>                   
+                <tr>
+                    <td><%= location.id%></td>
+                    <td><%= link_to location.location_code, location_path(location)%></td>
+                    <td><%= location.name%></td>
+                    <td><%= location.address_1 %></td>
+                    <td><%= location.address_2%></td>
+                    <td><%= location.postcode%></td>
+                    <td><%= location.state%></td>
+                    <td><%= location.country%></td>
+                    <td><%= location.company.name%></td>
+                    <td><%= location.items.count%></td>
+                    <td>
+                        <%= link_to edit_location_path(location), class: "btn btn-default" do %>
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= button_to location_path(location), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                            <i class="glyphicon glyphicon-remove"></i>
+                        <% end %> 
+                    </td>
+                </tr>
+            <% end %>                    
         <% end %>                    
     </table>
 
