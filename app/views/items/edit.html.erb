@@ -76,21 +76,24 @@
     $('#item_price, #item_cost').change(function() {
         var price = parseFloat($('#item_price').val());
         var cost = parseFloat($('#item_cost').val());
-        var profit = (price - cost).toFixed(2);
+        var cal_profit = (price - cost).toFixed(2);
         // debugger;
-        $('#item_profit').val(profit)
-        var new_profit = parseFloat($('#item_profit').val())
-        
-        // var outlet_price = document.querySelectorAll('#_location_item_outlet_prices_ ')
-        // console.log(oulet_price)
-
-    //     var outlet_cost = document.querySelectorAll('#_location_item_outlet_costs_')
-    //     var outlet_profit = document.querySelectorAll('#_location_item_outlet_profits_')
-    //     $(outlet_price).val(price)
-    //     $(outlet_cost).val(cost)
-    //     $(outlet_profit).val(profit)
+        $('#item_profit').val(cal_profit)
     })
 
-    
+    // var outlet_price = document.querySelectorAll('input[name *= "outlet_price"]')
+    // var outlet_cost = document.querySelectorAll('input[name *= "outlet_cost"]')
+    // var outlet_profit = document.querySelectorAll('input[name *= "outlet_profit"]')
+
+    $('input[name *= "outlet_price"], input[name *= "outlet_cost"]').change(function() {
+        var new_outlet_price = parseFloat($('input[name *= "outlet_price"]').val());
+        var new_outlet_cost = parseFloat($('input[name *= "outlet_cost"]').val());
+        var cal_outlet_profit = (new_outlet_price - new_outlet_cost).toFixed(2);
+        console.log("Price: " + new_outlet_price)
+        console.log("Cost: " + new_outlet_cost)
+        console.log("Profit: " +  cal_outlet_profit)
+        $('input[name *= "outlet_profit"]').val(cal_outlet_profit)
+    })
+
 
 </script>

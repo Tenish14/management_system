@@ -19,6 +19,6 @@ class Item < ApplicationRecord
     validates :cost, presence: true
     validates :profit, presence: true
     validates :category_id, presence: true
-    validates :company_id,presence: true
+    validates :company_id, presence: true
     # validates :location_ids, acceptance: { accept: ['TRUE', 'accepted'] }
 end
