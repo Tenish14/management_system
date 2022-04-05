@@ -35,7 +35,7 @@
                             <% items = Item.where(company_id: current_user.company.id)%>
                             <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item'} %>
                                 <datalist id="browser-item" >
-                                    <%= select_tag "[supplier_item][item_select][]", options_for_select(items.collect{ |item| [item.name, item.item_code]}), {class: "form-control"} %>
+                                    <%= select_tag "[supplier_item][item_select][]", options_for_select(items.collect{ |item| [item.name, item.id]}), {class: "form-control"} %>
                                 </datalist>
                         </div> 
 
