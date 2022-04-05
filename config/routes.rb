@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :users
   resources :companies
   resources :roles
-  resources :items
+  resources :items do
+    resources :location_items
+  end
   resources :categories
   resources :locations
   resources :suppliers

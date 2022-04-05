@@ -4,8 +4,8 @@ class Location < ApplicationRecord
     has_many :location_items
     has_many :items, through: :location_items
 
-    # has_many :supplier_items
-    # has_many :suppliers, through: :supplier_items
+    has_many :supplier_items
+    has_many :suppliers, through: :supplier_items
     # has_many :items, through: :supplier_items
 
     validates :address_1, presence: true

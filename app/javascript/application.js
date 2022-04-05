@@ -3,3 +3,16 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 import "bootstrap"
+
+//= require rails-ujs
+//= twitter-bootstrap
+//= require activestorage
+//= require turbolinks
+//= require jquery
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
+
+// *= require_tree .
+// *= require_self
+// *= require bootstrap-modal-bs3patch
+// *= require bootstrap-modal
