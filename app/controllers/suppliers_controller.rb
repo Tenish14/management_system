@@ -14,8 +14,17 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Supplier.new(supplier_params)
-      binding.pry
+    binding.pry
       if @supplier.save
+
+        item_code = params[:supplier_item][:item_ids]
+        item_id  = Item.where(:item_code => item_code).pluck(:id)
+        item_code.replace(item_id)
+
+        location_code = params[:supplier_item][:location_ids]
+        location_id = Location.where(:location_code => location_code).pluck(:id)
+        location_code.replace(location_id)
+
         item_params = params.require(:supplier_item).permit(item_ids: [], location_ids:[], supplier_prices: [])
         items = item_params[:item_ids].zip(*item_params.values_at(:location_ids, :supplier_prices))
         items.map do |item_id, location_id, supplier_price|

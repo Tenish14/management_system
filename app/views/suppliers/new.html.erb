@@ -35,7 +35,9 @@
                             <% items = Item.where(company_id: current_user.company.id)%>
                             <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item'} %>
                                 <datalist id="browser-item" >
-                                    <%= select_tag "[supplier_item][item_select][]", options_for_select(items.collect{ |item| [item.name, item.id]}), {class: "form-control"} %>
+                                    <% items.each do |item| %>
+                                        <option data-value = <%= item.id %>  value = <%= "#{item.item_code} - #{item.name}" %>></option>
+                                    <% end %>
                                 </datalist>
                         </div> 
 
@@ -44,7 +46,9 @@
                              <% locations = Location.where(company_id: current_user.company.id)%>
                             <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location'} %>
                             <datalist id="browser-location" >
-                                <%= select_tag "location_select", options_for_select(locations.collect{|location| [location.name, location.id]}), {class: "form-control"}%>
+                                <% locations.each do |location| %>
+                                    <option data-value = <%= location.id %> value = <%= "#{location.location_code} - #{location.name}"%>></option>
+                                <% end %>
                             </datalist>
                         </div> 
 
