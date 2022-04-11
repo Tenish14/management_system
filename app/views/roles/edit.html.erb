@@ -13,7 +13,7 @@
             <%= f.text_field :description, class: 'form-control', required: true %>
 
             <%= f.label :role_permission, class: 'required' %>
-            <%= f.select :role_permission_id, RolePermission.all.pluck(:authority,:id),{prompt:'select'},{class: "form-control"} %>
+
 
             <%= f.submit "Save Changes", class: "btn btn-primary" %>
             <%= link_to 'Back',roles_path, class: 'btn btn-success', style: 'width: 39.7em' %>
