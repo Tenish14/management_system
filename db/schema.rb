@@ -78,13 +78,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_040054) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "role_permission", force: :cascade do |t|
+  create_table "role_permissions", force: :cascade do |t|
     t.bigint "role_id"
     t.bigint "permission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permission_id"], name: "index_role_permission_on_permission_id"
-    t.index ["role_id"], name: "index_role_permission_on_role_id"
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
   end
 
   create_table "roles", force: :cascade do |t|
