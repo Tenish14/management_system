@@ -18,3 +18,12 @@ User.where(username: 'Owner').first_or_create! do |user|
     user.role_id = first_role.id
     user.company_id = first_company.id
 end
+
+
+Permission.new(permission: "Item").save
+Permission.new(permission: "User").save
+Permission.new(permission: "Role").save
+Permission.new(permission: "Company").save
+Permission.new(permission: "Location").save
+Permission.new(permission: "Category").save
+Permission.new(permission: "Supplier").save
