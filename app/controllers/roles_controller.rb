@@ -25,7 +25,7 @@ class RolesController < ApplicationController
     end
 
     def edit
-    end4
+    end
 
     def update
         if @role.update(role_params)
