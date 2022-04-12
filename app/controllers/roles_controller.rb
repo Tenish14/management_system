@@ -11,7 +11,12 @@ class RolesController < ApplicationController
 
     def create
         @role = Role.new(role_params)
+        # binding.pry
         if @role.save
+            params[:role_permission][:permission_ids].each do |permission_id|
+                role_permission = RolePermission.new(permission_id: permission_id, role_id: @role.id)
+                role_permission.save
+            end
             flash[:success] = "New role created"
             redirect_to roles_path
         else
@@ -20,7 +25,7 @@ class RolesController < ApplicationController
     end
 
     def edit
-    end
+    end4
 
     def update
         if @role.update(role_params)
@@ -40,8 +45,8 @@ class RolesController < ApplicationController
 
     private
         def role_params
-            params.require(:role).permit(:name, :description)
-        endf
+            params.require(:role).permit(:name, :description, :role_permission => [permission_ids: []])
+        end
 
         def current_role
             @role = Role.find(params[:id])

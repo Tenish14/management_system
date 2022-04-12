@@ -13,9 +13,18 @@
             <%= f.text_field :description, class: 'form-control', required: true %>
 
             <%= f.label :role_permission, class: 'required' %>
+            <% permissions = Permission.all %>
+            <% permissions.each do |permission| %>
+            <div class="checkbox inline">
+                <div id = "checkboxes">
+                    <%= check_box_tag "[role_permission][permission_ids][]", permission.id%>
+                    <%= permission.permission %><br>
+                </div>
+            </div>
+            <% end %>
 
             <%= f.submit "Create Role", class: "btn btn-primary" %>
             <%= link_to 'Back', roles_path, class: 'btn btn-success', style: 'width: 39.7em' %>
         <% end %>
     </div>
-</div>
+</div> 
