@@ -41,7 +41,7 @@ class RolesController < ApplicationController
     private
         def role_params
             params.require(:role).permit(:name, :description)
-        end
+        endf
 
         def current_role
             @role = Role.find(params[:id])
