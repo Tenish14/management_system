@@ -14,7 +14,6 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Supplier.new(supplier_params)
-    binding.pry
       if @supplier.save
 
         item_code = params[:supplier_item][:item_ids]

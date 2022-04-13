@@ -11,7 +11,6 @@ class RolesController < ApplicationController
 
     def create
         @role = Role.new(role_params)
-        # binding.pry
         if @role.save
             params[:role_permission][:permission_ids].each do |permission_id|
                 role_permission = RolePermission.new(permission_id: permission_id, role_id: @role.id)
