@@ -15,14 +15,20 @@
       </div>
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
-          <li><%= link_to "Item",   items_path %></li>
-          <li><%= link_to "User",   users_path %></li>
-          <li><%= link_to "Role",   roles_path %></li>
-          <li><%= link_to "Company",   companies_path %></li>
-          <li><%= link_to "Location",   locations_path %></li>
-          <li><%= link_to "Category",   categories_path %></li>
-          <li><%= link_to "Supplier",   suppliers_path %></li>
-          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% if logged_in? %>
+            <% current_role_id = current_user.role.id %>
+            <% role_permissions = RolePermission.where(role_id: current_role_id) %>
+            <% role_permissions.each do |role_permission| %>
+              <% permission_id = role_permission.permission_id %>
+              <% permissions = Permission.where(:id => permission_id) %>
+              <% permissions.each do |permission| %>
+                <li><%= link_to permission.permission, permission.path %></li>
+              <% end%>
+            <% end %>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% else %>
+                <li><%= link_to "Log in", login_path, method: :delete %></li>
+          <% end %>
       </ul>
     </nav>
   </div>

@@ -3,6 +3,3 @@ Company.where(name: 'John Market Sdn Bhd').first_or_create! do |company|
     company.phone_number = "017-5179520"
     company.branch = "Georgetown"
 end
-
-company = Company.find(1)
-
