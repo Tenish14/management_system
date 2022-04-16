@@ -21,10 +21,12 @@
                 <th>Location Code</th>
                 <th>Name</th>
                 <th>Locations</th>
+                <th>Outlet ID</th>
                 <th>Outlet Price</th>
                 <th>Outlet Cost</th>
                 <th>Outlet Profit</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
 
             <% @item.locations.each do |location| %> 
@@ -34,13 +36,14 @@
                     <td><%= location.location_code %></td>
                     <td><%= location.name %></td>
                     <td><%= location.company.name %></td>
+                    <td><%= location_items.id %></td>
                     <td><%= location_items.outlet_price %></td>
                     <td><%= location_items.outlet_cost %></td>
                     <td><%= location_items.outlet_profit %></td>
                     <td>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id %>">
-                        Launch demo modal
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id %>">
+                            <i class="bi bi-pencil-fill"></i>
                         </button>
 
                         <!-- Modal -->
@@ -48,23 +51,77 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel-<%= location.id %>"> <%= location.name %> </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
+                                            <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id, id: location_items.id) %>
+                                            <% location_items.each do |location_item| %>
+                                                <% f.label :Company, class: 'required' %>
+                                                <% f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+                                                <%= f.hidden_field :company_id, value: current_user.company.id %>
+
+                                                <% f.label :Location, class: 'required' %>
+                                                <%= f.hidden_field :location_id, value: location.id %>
+
+                                                <% f.label :LocationItem, class: 'required' %>
+                                                <%= hidden_field_tag "[location_item][id]", location_item.id %>
+                                                
+                                                <div id= "price">
+                                                    <%= f.label :outlet_price , class: 'required form-label'%>
+                                                    <%= number_field_tag "[location_item][outlet_prices]", location_item.outlet_price, step: :any, class: "form-control" %>
+
+                                                    <%= f.label :outlet_cost , class: 'required form-label'%>
+                                                    <%= number_field_tag "[location_item][outlet_costs]", location_item.outlet_cost, step: :any, class: "form-control" %>
+
+                                                    <%= f.label :outlet_profit, class: 'required form-label' %>
+                                                    <%= number_field_tag "[location_item][outlet_profits]", location_item.outlet_profit, step: :any, class: "form-control" %>
+                                                </div>
+                                            <% end %>
+                                        
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save Changes</button>
                                 </div>
                                 </div>
+                                <% end %>
                             </div>
                         </div>
-
-                    
+                    </td>
+                    <td>
+                        <%= button_to "#", class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                            <i class="bi bi-trash-fill"></i>
+                        <% end %>
                     </td>
             <% end %>  
         </table>
     </div>
     <%= link_to 'Back', items_path, class: 'btn btn-success' %>
+
+<script type="text/javascript">
+
+    $('#item_price, #item_cost').change(function() {
+        var price = parseFloat($('#item_price').val());
+        var cost = parseFloat($('#item_cost').val());
+        var cal_profit = (price - cost).toFixed(2);
+        $('#item_profit').val(cal_profit)
+        var profit = parseFloat($('#item_profit').val())
+
+        var outlet_price = $('input[name *= "outlet_price"]')
+        var outlet_cost = $('input[name *= "outlet_cost"]')
+        var outlet_profit = $('input[name *= "outlet_profit"]')
+
+        $(outlet_price).val(price)
+        $(outlet_cost).val(cost)
+        $(outlet_profit).val(profit)
+        
+    })
+    
+
+</script>
