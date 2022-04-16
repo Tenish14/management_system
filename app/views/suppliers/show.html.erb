@@ -1,4 +1,6 @@
-<div class="container">
+<% @title=@supplier.username%>
+
+<div class="container mt-5">
     <div class="row" >
         <div class="col-md-6" >
             <h1>Supplier Details</h1>
@@ -10,36 +12,38 @@
             <h5>Company Name: <%= @supplier.company.name %></h5>
         </div>
     </div>
-    <h3>Supplier Item in other location</h3>
-    <table class="table table-hover">
-        <tr>
-            <th>Item Code </th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>Item Price</th>
-            <th>Item Cost</th>
-            <th>Item Profit</th>
-            <th>Category Name</th>
-            <th>Location Id</th>
-            <th>Supplier Price</th>
-
-        </tr>
-
-        <% @supplier.items.each do |item| %> 
-         <% supplier_item = SupplierItem.where(item_id: item.id, supplier_id: @supplier.id).first%>                     
+    <h3 class="my-2">Supplier Item in other location</h3>
+    <div class="table responsive">
+        <table class="table table-hover">
             <tr>
-                <td><%= item.item_code %></td>
-                <td><%= item.name %></td>
-                <td><%= item.description %></td>
-                <td><%= item.quantity_stock %></td>
-                <td><%= item.price %></td>
-                <td><%= item.cost %></td>
-                <td><%= item.profit %></td>
-                <td><%= item.category.name %></td>
-                <td><%= supplier_item.location.name %></td>
-                <td><%= supplier_item.supplier_price %></td>
+                <th>Item Code </th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Item Price</th>
+                <th>Item Cost</th>
+                <th>Item Profit</th>
+                <th>Category Name</th>
+                <th>Location Id</th>
+                <th>Supplier Price</th>
+
             </tr>
-        <% end %>                    
-    </table>
+
+            <% @supplier.items.each do |item| %> 
+            <% supplier_item = SupplierItem.where(item_id: item.id, supplier_id: @supplier.id).first%>                     
+                <tr>
+                    <td><%= item.item_code %></td>
+                    <td><%= item.name %></td>
+                    <td><%= item.description %></td>
+                    <td><%= item.quantity_stock %></td>
+                    <td><%= item.price %></td>
+                    <td><%= item.cost %></td>
+                    <td><%= item.profit %></td>
+                    <td><%= item.category.name %></td>
+                    <td><%= supplier_item.location.name %></td>
+                    <td><%= supplier_item.supplier_price %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
     <%= link_to 'Back', suppliers_path(@supplier), class: 'btn btn-success' %>

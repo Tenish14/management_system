@@ -1,66 +1,69 @@
 <% @title="Edit Item" %>
-<h1 class="center">Edit Item</h1>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
-            <%= render 'shared/error_messages' , object: f.object%>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto my-auto">
+        <h2 class="center mt-5">Edit Item</h2>
+            <%= form_with(model: @item, local: true, data: { turbo: false }) do |f| %>
+                <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :Company, class: 'required' %>
-            <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
-            <%= f.hidden_field :company_id, value: current_user.company.id %>
-            
-            <%= f.label :item_code, class: 'required' %>
-            <%= f.text_field :item_code, class: 'form-control', required: true %>
+                <%= f.label :Company, class: 'required form-label' %>
+                <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+                <%= f.hidden_field :company_id, value: current_user.company.id %>
+                
+                <%= f.label :item_code, class: 'required form-label' %>
+                <%= f.text_field :item_code, class: 'form-control', required: true %>
 
-            <%= f.label :name, class: 'required' %>
-            <%= f.text_field :name, class: 'form-control', required: true %>
+                <%= f.label :name, class: 'required form-label' %>
+                <%= f.text_field :name, class: 'form-control', required: true %>
 
-            <%= f.label :description, class: 'required' %>
-            <%= f.text_field :description, class: 'form-control', required: true  %>
+                <%= f.label :description, class: 'required form-label' %>
+                <%= f.text_field :description, class: 'form-control', required: true  %>
 
-            <%= f.label :quantity_stock , class: 'required'%>
-            <%= f.number_field :quantity_stock, class: 'form-control', required: true  %>
+                <%= f.label :quantity_stock , class: 'required form-label'%>
+                <%= f.number_field :quantity_stock, class: 'form-control', required: true  %>
 
-            <%= f.label :price, class: 'required' %>
-            <%= f.number_field :price, class: 'form-control', step: :any, required: true %>
+                <%= f.label :price, class: 'required form-label' %>
+                <%= f.number_field :price, class: 'form-control', step: :any, required: true %>
 
-            <%= f.label :cost, class: 'required' %>
-            <%= f.number_field :cost, class: 'form-control', step: :any, required: true  %>
+                <%= f.label :cost, class: 'required form-label' %>
+                <%= f.number_field :cost, class: 'form-control', step: :any, required: true  %>
 
-            <%= f.label :profit, class: 'required' %>
-            <%= f.number_field :profit, class: 'form-control', step: :any, required: true  %>
+                <%= f.label :profit, class: 'required form-label' %>
+                <%= f.number_field :profit, class: 'form-control', step: :any, required: true  %>
 
-            <%= f.label :category, class: 'required'%>
-            <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
+                <%= f.label :category, class: 'required form-label'%>
+                <%= f.select :category_id,Category.all.pluck(:name,:id),{prompt:'select'},{class: "form-control"}%>
 
-            <%= f.label :Location, class: 'required'%>
-            <div class="checkbox inline">
-                <% current_user.company.locations.each do |location| %>
-                    <div id = "checkboxes">
-                        <%= check_box_tag "[location_item][location_ids][]", location.id%>
-                        <%= location.name %><br>
-                    </div>
-                    <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
-                        <% location_items.each do |location_item| %>
-                            <div id= "price">
-                                <%= f.label :outlet_price , class: 'required'%>
-                                <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", location_item.outlet_price, step: :any %>
+                <%= f.label :Location, class: 'required form-label'%>
+                <div>
+                    <% current_user.company.locations.each do |location| %>
+                        <div id = "checkboxes" class="form-check my-2">
+                            <%= check_box_tag "[location_item][location_ids][]", location.id, nil, class: "form-check-input"%>
+                            <%= location.name %><br>
+                        </div>
+                        <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
+                            <% location_items.each do |location_item| %>
+                                <div id= "price" class="my-2">
+                                    <%= f.label :outlet_price , class: 'required form-label'%>
+                                    <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", location_item.outlet_price, step: :any, class: 'form-control' %>
 
-                                <%= f.label :outlet_cost , class: 'required'%>
-                                <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", location_item.outlet_cost, step: :any %>
+                                    <%= f.label :outlet_cost , class: 'required form-label'%>
+                                    <%= number_field_tag "[location_item][outlet_costs][#{location.id}][]", location_item.outlet_cost, step: :any, class: 'form-control' %>
 
-                                <%= f.label :outlet_profit, class: 'required' %>
-                                <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", location_item.outlet_profit, step: :any %>
-                            </div>
-                        <% end %>
-                <% end %>
-            </div>
+                                    <%= f.label :outlet_profit, class: 'required form-label' %>
+                                    <%= number_field_tag "[location_item][outlet_profits][#{location.id}][]", location_item.outlet_profit, step: :any, class: 'form-control' %>
+                                </div>
+                            <% end %>
+                    <% end %>
+                </div>
+                <div class="d-grid gap-2">
+                    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+                    <%= link_to 'Back', items_path, class: 'btn btn-success' %>
+                </div>
 
-            <%= f.submit "Save Changes", class: "btn btn-primary" %>
-            <%= link_to 'Back', items_path, class: 'btn btn-success', style: 'width: 39.7em' %>
-
-        <% end %>
+            <% end %>
+        </div>
     </div>
 </div>
 

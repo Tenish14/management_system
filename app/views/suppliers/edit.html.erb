@@ -1,40 +1,78 @@
-<% @title="Edit Supplier" %>
-<h1 class="center">Edit supplier</h1>
+<% @title="Add Supplier" %>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @supplier, local: true, data: { turbo: false }) do |f| %>
-            <%= render 'shared/error_messages' , object: f.object%>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto my-auto">
+        <h1 class="center mt-4">Edit supplier</h1>
+            <%= form_with(model: @supplier, local: true, data: { turbo: false }) do |f| %>
+                <%= render 'shared/error_messages' , object: f.object%>
 
-            <%= f.label :Company, class: 'required'%>
-            <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
-            <%= f.hidden_field :company_id, value: current_user.company.id %>
+                <%= f.label :Company, class: 'required form-label'%>
+                <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+                <%= f.hidden_field :company_id, value: current_user.company.id %>
 
-            <%= f.label :first_name, class: 'required' %>
-            <%= f.text_field :first_name, class: 'form-control', required: true %>
+                <%= f.label :first_name, class: 'required form-label' %>
+                <%= f.text_field :first_name, class: 'form-control', required: true %>
 
-            <%= f.label :last_name, class: 'required' %>
-            <%= f.text_field :last_name, class: 'form-control', required: true %>
+                <%= f.label :last_name, class: 'required form-label' %>
+                <%= f.text_field :last_name, class: 'form-control', required: true %>
 
-            <%= f.label :username, class: 'required' %>
-            <%= f.text_field :username, class: 'form-control', required: true %>
+                <%= f.label :username, class: 'required form-label' %>
+                <%= f.text_field :username, class: 'form-control', required: true %>
 
-            <%= f.label :email, class: 'required' %>
-            <%= f.email_field :email, class: 'form-control', required: true %>
+                <%= f.label :email, class: 'required form-label' %>
+                <%= f.email_field :email, class: 'form-control', required: true %>
 
-            <%= f.label :phone_number, class: 'required' %>
-            <%= f.text_field :phone_number, class: 'form-control', required: true%>
+                <%= f.label :phone_number, class: 'required form-label' %>
+                <%= f.text_field :phone_number, class: 'form-control', required: true%>
 
-            <%= f.label :Items, class: 'required' %>
-            <div class = "checkbox inline">
-                <% current_user.company.items.each do |item| %>
-                    <%= check_box_tag "items_ids[]", item.id %>
-                    <%= item.name %> <br>
-                <% end %>
-            </div>
+                <button type='button' class = "btn btn-warning my-2" onclick="addMore()">Add Item</button>
+                <div id="original-inputs">
+                    <div class="row">
+                        <div class="col-4">
+                            <%= f.label :item, class: 'required form-label'%>
+                            <% items = Item.where(company_id: current_user.company.id)%>
+                            <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item'} %>
+                                <datalist id="browser-item" >
+                                    <% items.each do |item| %>
+                                        <option data-value = <%= item.id %>  value = <%= "#{item.item_code} - #{item.name}" %>></option>
+                                    <% end %>
+                                </datalist>
+                        </div> 
 
-            <%= f.submit "Save Changes", class: "btn btn-primary" %>
-            <%= link_to 'Back', suppliers_path, class: 'btn btn-success', style: 'width: 39.7em' %>
-        <% end %>
+                        <div class="col-4">
+                            <%= f.label :location, class: 'required form-label' %>
+                            <% locations = Location.where(company_id: current_user.company.id)%>
+                            <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location'} %>
+                            <datalist id="browser-location" >
+                                <% locations.each do |location| %>
+                                    <option data-value = <%= location.id %> value = <%= "#{location.location_code} - #{location.name}"%>></option>
+                                <% end %>
+                            </datalist>
+                        </div> 
+
+                        <div class="col-4">
+                            <%= f.label :supplier_price, class: 'required form-label' %>
+                        <%=  number_field_tag "[supplier_item][supplier_prices][]", nil, step: :any  %>
+                        
+                    </div>
+                </div>
+
+                </div>
+
+                <div id="dynamic-inputs"></div>
+
+                <div class="d-grid gap-2 my-2">
+                    <%= f.submit "Create Supplier", class: "btn btn-primary" %>
+                    <%= link_to 'Back', suppliers_path, class: 'btn btn-success' %>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function addMore(){
+        $("#dynamic-inputs").append($("#original-inputs").html())
+    }
+</script>

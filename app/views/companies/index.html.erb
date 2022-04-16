@@ -1,37 +1,39 @@
 <% @title="Companies" %>
-<h1 class="center">Companies</h1>
+<h1 class="center mt-4">Companies</h1>
 
 <div class="container">
-    <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Branch</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-
-        <% @companies.each do |company| %>                    
+    <div class="table-responsive">
+        <table class="table table-hover">
             <tr>
-                <td><%= company.id%></td>
-                <td><%= link_to company.name, company_path(company) %></td>
-                <td><%= company.email %></td>
-                <td><%= company.phone_number%></td>
-                <td><%= company.branch%></td>
-                <td>
-                    <%= link_to edit_company_path(company), class: "btn btn-warning" do %>
-                         <i class="bi bi-pencil-fill"></i>
-                    <% end %>
-                </td>
-                <td>
-                    <%= button_to company_path(company), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                         <i class="bi bi-trash-fill"></i>
-                    <% end %> 
-                </td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Branch</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        <% end %>                    
-    </table>
+
+            <% @companies.each do |company| %>                    
+                <tr>
+                    <td><%= company.id%></td>
+                    <td><%= link_to company.name, company_path(company) %></td>
+                    <td><%= company.email %></td>
+                    <td><%= company.phone_number%></td>
+                    <td><%= company.branch%></td>
+                    <td>
+                        <%= link_to edit_company_path(company), class: "btn btn-warning" do %>
+                            <i class="bi bi-pencil-fill"></i>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= button_to company_path(company), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                            <i class="bi bi-trash-fill"></i>
+                        <% end %> 
+                    </td>
+                </tr>
+            <% end %>                    
+        </table>
+    </div>
     <%= link_to 'Add company', new_company_path, class: 'btn btn-success' %>
 </div>

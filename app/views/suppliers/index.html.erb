@@ -1,44 +1,46 @@
 <% @title="Suppliers" %>
-<h1 class="center">Suppliers</h1>
+<h1 class="center mt-4">Suppliers</h1>
 
 <div class="container">
-    <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last_name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Company Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last_name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Company Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-        <% @suppliers.each do |supplier| %> 
-            <% if current_user.company_id == supplier.company_id %>                    
-                <tr>
-                    <td><%= supplier.id%></td>
-                    <td><%= link_to supplier.first_name, supplier_path(supplier)%></td>
-                    <td><%= supplier.last_name %></td>
-                    <td><%= supplier.username%></td>
-                    <td><%= supplier.email%></td>
-                    <td><%= supplier.phone_number%></td>
-                    <td><%= supplier.company.name%></td>
-                    <td>
-                        <%= link_to edit_supplier_path(supplier), class: "btn btn-warning" do %>
-                             <i class="bi bi-pencil-fill"></i>
-                        <% end %>
-                    </td>
-                    <td>
-                        <%= button_to supplier_path(supplier), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                             <i class="bi bi-trash-fill"></i>
-                        <% end %> 
-                    </td>
-                </tr>
-            <% end %>         
-        <% end %>                    
-    </table>
+            <% @suppliers.each do |supplier| %> 
+                <% if current_user.company_id == supplier.company_id %>                    
+                    <tr>
+                        <td><%= supplier.id%></td>
+                        <td><%= link_to supplier.first_name, supplier_path(supplier)%></td>
+                        <td><%= supplier.last_name %></td>
+                        <td><%= supplier.username%></td>
+                        <td><%= supplier.email%></td>
+                        <td><%= supplier.phone_number%></td>
+                        <td><%= supplier.company.name%></td>
+                        <td>
+                            <%= link_to edit_supplier_path(supplier), class: "btn btn-warning" do %>
+                                <i class="bi bi-pencil-fill"></i>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= button_to supplier_path(supplier), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                                <i class="bi bi-trash-fill"></i>
+                            <% end %> 
+                        </td>
+                    </tr>
+                <% end %>         
+            <% end %>                    
+        </table>
+    </div>
 
     <% if logged_in? && current_user.role_id? %>
         <%= link_to 'Add supplier', new_supplier_path, class: 'btn btn-success' %>

@@ -1,29 +1,32 @@
 <% @title="Edit Company" %>
-<h1 class="center">Edit Company</h1>
 
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto my-auto">
+        <h1 class="center mt-4">Edit Company</h1>
+                <%= form_with(model: @company, local: true, data: { turbo: false }) do |f| %>
+                <%= render 'shared/error_messages' , object: f.object%>
 
-        <%= form_with(model: @company, local: true, data: { turbo: false }) do |f| %>
-            <%= render 'shared/error_messages' , object: f.object%>
+                <%= f.label :name, class: 'required' %>
+                <%= f.text_field :name, class: 'form-control', required: true %>
 
-            <%= f.label :name, class: 'required' %>
-            <%= f.text_field :name, class: 'form-control', required: true %>
+                <%= f.label :email, class: 'required' %>
+                <%= f.email_field :email, class: 'form-control', required: true %>
 
-            <%= f.label :email, class: 'required' %>
-            <%= f.email_field :email, class: 'form-control', required: true %>
+                <%= f.label :phone_number, class: 'required' %>
+                <%= f.text_field :phone_number, class: 'form-control', required: true %>
 
-            <%= f.label :phone_number, class: 'required' %>
-            <%= f.text_field :phone_number, class: 'form-control', required: true %>
+                <%= f.label :branch, class: 'required' %>
+                <%= f.text_field :branch, class: 'form-control', required: true %>
+                
+                <div class="d-grid gap-2 my-2">
+                    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+                    <%= link_to 'Back', companies_path, class: 'btn btn-success' %>
+                </div>
+                </div>
+            <% end %>
 
-            <%= f.label :branch, class: 'required' %>
-            <%= f.text_field :branch, class: 'form-control', required: true %>
-            
-            <%= f.submit "Save Changes", class: "btn btn-primary" %>
-            <%= link_to 'Back', companies_path, class: 'btn btn-success', style: 'width: 39.7em' %>
-            </div>
-        <% end %>
-
+        </div>
     </div>
 </div>

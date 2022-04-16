@@ -3,17 +3,17 @@
 <div class="container mt-5">
     <div class="row" >
         <div class="col-md-6" >
-            <h1>Item Details</h1>
+            <h2>Item Details</h2>
             <h5>Item Code: <%= @item.item_code %></h5>
             <h5>Name: <%= @item.name %></h5>
             <h5>Description: <%= @item.description %></h5>
-            <h5>Price: <%= @item.price %></h5>
-            <h5>Cost: <%= @item.cost %></h5>
-            <h5>Profit: <%= @item.profit %></h5>
+            <h5>Item Price: <%= @item.price %></h5>
+            <h5>Item Cost: <%= @item.cost %></h5>
+            <h5>Item Profit: <%= @item.profit %></h5>
         </div>
     </div>
 
-    <h3>Item price in other location</h3>
+    <h3 class = "my-2" >Item price in other location</h3>
     <div class="table-responsive"> 
         <table class="table table-hover">
             <tr>
@@ -21,7 +21,6 @@
                 <th>Location Code</th>
                 <th>Name</th>
                 <th>Locations</th>
-                <th>Outlet ID</th>
                 <th>Outlet Price</th>
                 <th>Outlet Cost</th>
                 <th>Outlet Profit</th>
@@ -36,7 +35,6 @@
                     <td><%= location.location_code %></td>
                     <td><%= location.name %></td>
                     <td><%= location.company.name %></td>
-                    <td><%= location_items.id %></td>
                     <td><%= location_items.outlet_price %></td>
                     <td><%= location_items.outlet_cost %></td>
                     <td><%= location_items.outlet_profit %></td>
@@ -51,7 +49,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel-<%= location.id %>"> <%= location.name %> </h5>
+                                    <p class="modal-title" id="exampleModalLabel-<%= location.id %>"> <%= location.name %> </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

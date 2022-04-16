@@ -1,30 +1,34 @@
 <% @title="Add Role" %>
-<h1 class="center">Add role</h1>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @role, local: true, data: { turbo: false }) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto my-auto">
+        <h2 class="center mt-5">Add role</h2>
+            <%= form_with(model: @role, local: true, data: { turbo: false }) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
 
-            <%= f.label :name, class: 'required' %>
-            <%= f.text_field :name, class: 'form-control', required: true %>
+                <%= f.label :name, class: 'required form-label' %>
+                <%= f.text_field :name, class: 'form-control', required: true %>
 
-            <%= f.label :description, class: 'required' %>
-            <%= f.text_field :description, class: 'form-control', required: true %>
+                <%= f.label :description, class: 'required form-label' %>
+                <%= f.text_field :description, class: 'form-control', required: true %>
 
-            <%= f.label :role_permission, class: 'required' %>
-            <% permissions = Permission.all %>
-            <% permissions.each do |permission| %>
-            <div class="checkbox inline">
-                <div id = "checkboxes">
-                    <%= check_box_tag "[role_permission][permission_ids][]", permission.id%>
-                    <%= permission.permission %><br>
+                <%= f.label :role_permission, class: 'required form-label' %>
+                <% permissions = Permission.all %>
+                <% permissions.each do |permission| %>
+                <div class="form-check my-2">
+                    <div id = "checkboxes">
+                        <%= check_box_tag "[role_permission][permission_ids][]", permission.id, false, class: "form-check-input" %>
+                        <%= permission.permission %><br>
+                    </div>
                 </div>
-            </div>
-            <% end %>
+                <% end %>
 
-            <%= f.submit "Create Role", class: "btn btn-primary" %>
-            <%= link_to 'Back', roles_path, class: 'btn btn-success', style: 'width: 39.7em' %>
-        <% end %>
-    </div>
-</div> 
+                <div class="d-grid gap-2 my-2">
+                    <%= f.submit "Create Role", class: "btn btn-primary" %>
+                    <%= link_to 'Back', roles_path, class: 'btn btn-success'%>
+                </div>
+            <% end %>
+        </div>
+    </div> 
+</div>

@@ -1,50 +1,52 @@
 <% @title="Locations" %>
-<h1 class="center">Locations</h1>
+<h1 class="center mt-4">Locations</h1>
 
 <div class="container">
-    <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Location Code</th>
-            <th>Name</th>
-            <th>Address 1</th>
-            <th>Address 2</th>
-            <th>Postcode</th>
-            <th>State</th>
-            <th>Country</th>
-            <th>Company</th>
-            <th>Items count</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
+    <div class="table hovering">
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Location Code</th>
+                <th>Name</th>
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>Postcode</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Company</th>
+                <th>Items count</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-        <% @locations.each do |location| %>  
-            <% if current_user.company_id == location.company_id %>                   
-                <tr>
-                    <td><%= location.id%></td>
-                    <td><%= link_to location.location_code, location_path(location)%></td>
-                    <td><%= location.name%></td>
-                    <td><%= location.address_1 %></td>
-                    <td><%= location.address_2%></td>
-                    <td><%= location.postcode%></td>
-                    <td><%= location.state%></td>
-                    <td><%= location.country%></td>
-                    <td><%= location.company.name%></td>
-                    <td><%= location.items.count%></td>
-                    <td>
-                        <%= link_to edit_location_path(location), class: "btn btn-warning" do %>
-                             <i class="bi bi-pencil-fill"></i>
-                        <% end %>
-                    </td>
-                    <td>
-                        <%= button_to location_path(location), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                             <i class="bi bi-trash-fill"></i>
-                        <% end %> 
-                    </td>
-                </tr>
+            <% @locations.each do |location| %>  
+                <% if current_user.company_id == location.company_id %>                   
+                    <tr>
+                        <td><%= location.id%></td>
+                        <td><%= link_to location.location_code, location_path(location)%></td>
+                        <td><%= location.name%></td>
+                        <td><%= location.address_1 %></td>
+                        <td><%= location.address_2%></td>
+                        <td><%= location.postcode%></td>
+                        <td><%= location.state%></td>
+                        <td><%= location.country%></td>
+                        <td><%= location.company.name%></td>
+                        <td><%= location.items.count%></td>
+                        <td>
+                            <%= link_to edit_location_path(location), class: "btn btn-warning" do %>
+                                <i class="bi bi-pencil-fill"></i>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= button_to location_path(location), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                                <i class="bi bi-trash-fill"></i>
+                            <% end %> 
+                        </td>
+                    </tr>
+                <% end %>                    
             <% end %>                    
-        <% end %>                    
-    </table>
+        </table>
+    </div>
 
     <% if logged_in? && current_user.role_id? %>
         <%= link_to 'Add location', new_location_path, class: 'btn btn-success' %>
