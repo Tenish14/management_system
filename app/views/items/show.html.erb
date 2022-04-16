@@ -1,4 +1,5 @@
 <% @title=@item.name%>
+
 <div class="container">
     <div class="row" >
         <div class="col-md-6" >
@@ -13,6 +14,7 @@
     </div>
 
     <h3>Item price in other location</h3>
+    <div class="table-responsive"> 
     <table class="table table-hover">
         <tr>
             <th>Location Id</th>
@@ -22,21 +24,47 @@
             <th>Outlet Price</th>
             <th>Outlet Cost</th>
             <th>Outlet Profit</th>
+            <th>Edit</th>
         </tr>
 
         <% @item.locations.each do |location| %> 
-            <% location_item = LocationItem.where(location_id: location.id, item_id: @item.id).first %>                   
+            <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id).first %>                   
             <tr>
                 <td><%= location.id %></td>
                 <td><%= location.location_code %></td>
                 <td><%= location.name %></td>
                 <td><%= location.company.name %></td>
-                <td><%= location_item.outlet_price %></td>
-                <td><%= location_item.outlet_cost %></td>
-                <td><%= location_item.outlet_profit %></td>
+                <td><%= location_items.outlet_price %></td>
+                <td><%= location_items.outlet_cost %></td>
+                <td><%= location_items.outlet_profit %></td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id %>">
+                    Launch demo modal
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal-<%= location.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                </td>
         <% end %>  
     </table>
+    </div>
     <%= link_to 'Back', items_path, class: 'btn btn-success' %>
-
-<script type="text/javascript"> 
-</script>
