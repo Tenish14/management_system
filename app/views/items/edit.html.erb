@@ -41,8 +41,8 @@
                         <%= check_box_tag "[location_item][location_ids][]", location.id%>
                         <%= location.name %><br>
                     </div>
-                    <% location_item = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
-                        <% location_item.each do |location_item| %>
+                    <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
+                        <% location_items.each do |location_item| %>
                             <div id= "price">
                                 <%= f.label :outlet_price , class: 'required'%>
                                 <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", location_item.outlet_price, step: :any %>
@@ -77,13 +77,8 @@
         var price = parseFloat($('#item_price').val());
         var cost = parseFloat($('#item_cost').val());
         var cal_profit = (price - cost).toFixed(2);
-        // debugger;
         $('#item_profit').val(cal_profit)
     })
-
-    // var outlet_price = document.querySelectorAll('input[name *= "outlet_price"]')
-    // var outlet_cost = document.querySelectorAll('input[name *= "outlet_cost"]')
-    // var outlet_profit = document.querySelectorAll('input[name *= "outlet_profit"]')
 
     $('input[name *= "outlet_price"], input[name *= "outlet_cost"]').change(function() {
         var new_outlet_price = parseFloat($('input[name *= "outlet_price"]').val());

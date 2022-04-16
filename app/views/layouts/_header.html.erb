@@ -1,20 +1,12 @@
-  <header class="navbar navbar-fixed-top navbar-inverse">
+<nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg">
   <div class="container">
-    <%= link_to "Management System", items_path, id: "logo" %>
-    <nav>
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1"
-                aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+    <%= link_to "Management System", items_path, id: "logo", class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
+      <div class="collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
+          <div class="navbar-nav ms-auto">
           <% if logged_in? %>
             <% current_role_id = current_user.role.id %>
             <% role_permissions = RolePermission.where(role_id: current_role_id) %>
@@ -22,14 +14,14 @@
               <% permission_id = role_permission.permission_id %>
               <% permissions = Permission.where(:id => permission_id) %>
               <% permissions.each do |permission| %>
-                <li><%= link_to permission.permission, permission.path %></li>
+                <%= link_to permission.permission, permission.path, class: "nav-link" %>
               <% end%>
             <% end %>
-            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
           <% else %>
-                <li><%= link_to "Log in", login_path, method: :delete %></li>
+                <%= link_to "Log in", login_path, class: "nav-link" %>
           <% end %>
-      </ul>
-    </nav>
+          </div>
+      </div>
   </div>
-</header>
+</nav>

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "type": "module",
     "@rails/webpacker": "5.4.3",
     "bootstrap": "3.4.1",
     "jquery": "^3.6.0",
