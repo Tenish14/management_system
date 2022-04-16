@@ -19,20 +19,20 @@
             <% if current_user.company_id == supplier.company_id %>                    
                 <tr>
                     <td><%= supplier.id%></td>
-                    <td><%= link_to supplier.username, supplier_path(supplier)%></td>
+                    <td><%= link_to supplier.first_name, supplier_path(supplier)%></td>
                     <td><%= supplier.last_name %></td>
                     <td><%= supplier.username%></td>
                     <td><%= supplier.email%></td>
                     <td><%= supplier.phone_number%></td>
                     <td><%= supplier.company.name%></td>
                     <td>
-                        <%= link_to edit_supplier_path(supplier), class: "btn btn-default" do %>
-                            <i class="glyphicon glyphicon-pencil"></i>
+                        <%= link_to edit_supplier_path(supplier), class: "btn btn-warning" do %>
+                             <i class="bi bi-pencil-fill"></i>
                         <% end %>
                     </td>
                     <td>
-                        <%= button_to supplier_path(supplier), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                            <i class="glyphicon glyphicon-remove"></i>
+                        <%= button_to supplier_path(supplier), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                             <i class="bi bi-trash-fill"></i>
                         <% end %> 
                     </td>
                 </tr>

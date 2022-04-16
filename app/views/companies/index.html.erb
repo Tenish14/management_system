@@ -21,13 +21,13 @@
                 <td><%= company.phone_number%></td>
                 <td><%= company.branch%></td>
                 <td>
-                    <%= link_to edit_company_path(company), class: "btn btn-default" do %>
-                        <i class="glyphicon glyphicon-pencil"></i>
+                    <%= link_to edit_company_path(company), class: "btn btn-warning" do %>
+                         <i class="bi bi-pencil-fill"></i>
                     <% end %>
                 </td>
                 <td>
-                    <%= button_to company_path(company), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } do %> 
-                         <i class="glyphicon glyphicon-remove"></i>
+                    <%= button_to company_path(company), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                         <i class="bi bi-trash-fill"></i>
                     <% end %> 
                 </td>
             </tr>
