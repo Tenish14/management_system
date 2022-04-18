@@ -35,7 +35,7 @@
                             <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item'} %>
                                 <datalist id="browser-item" >
                                     <% items.each do |item| %>
-                                        <option data-value = <%= item.id %>  value = <%= "#{item.item_code} - #{item.name}" %>></option>
+                                        <option class="form-control" data-value = <%= item.id %>  value = <%= "#{item.item_code} - #{item.name}" %>></option>
                                     <% end %>
                                 </datalist>
                         </div> 
@@ -46,7 +46,7 @@
                             <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location'} %>
                             <datalist id="browser-location" >
                                 <% locations.each do |location| %>
-                                    <option data-value = <%= location.id %> value = <%= "#{location.location_code} - #{location.name}"%>></option>
+                                    <option class="form-control" data-value = <%= location.id %> value = <%= "#{location.location_code} - #{location.name}"%>></option>
                                 <% end %>
                             </datalist>
                         </div> 
