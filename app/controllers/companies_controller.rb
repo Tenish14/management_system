@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
 
     def update
         if @company.update(company_params)
-            flash[:success] = "Company Updated"
+            flash[:warning] = "Company Updated"
             redirect_to company_path(@company)
         else
             render 'edit'
@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
 
     def destroy
         if @company.destroy
-          flash[:success] = "Company deleted"
+          flash[:danger] = "Company deleted"
           redirect_to companies_path
         end
       end

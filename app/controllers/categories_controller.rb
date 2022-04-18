@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash[:success] = "Category Updated"
+      flash[:warning] = "Category Updated"
       redirect_to categories_path
     else
       render 'edit'
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     if @category.destroy
-      flash[:success] = "Category Deleted"
+      flash[:danger] = "Category Deleted"
       redirect_to categories_path
     end
   end

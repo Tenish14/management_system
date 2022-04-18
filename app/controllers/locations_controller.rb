@@ -27,14 +27,14 @@ class LocationsController < ApplicationController
 
     def update
         if @location.update(location_params)
-            flash[:success] = "Location Updated"
+            flash[:warning] = "Location Updated"
             redirect_to location_path(@location)
         end
     end
     
     def destroy
         if @location.destroy
-            flash[:success] = "Location Deleted"
+            flash[:danger] = "Location Deleted"
             redirect_to locations_path
         end
     end

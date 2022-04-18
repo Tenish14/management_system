@@ -47,7 +47,7 @@ class SuppliersController < ApplicationController
 
   def update
     if @supplier.update(supplier_params)
-      flash[:success] = "Supplier Update"
+      flash[:warning] = "Supplier Update"
       redirect_to supplier_path(@supplier)
     else
       render 'edit'
@@ -56,7 +56,7 @@ class SuppliersController < ApplicationController
 
   def destroy
     if @supplier.destroy
-      flash[:success] = "Supplier Deleted"
+      flash[:danger] = "Supplier Deleted"
       redirect_to suppliers_path
     end
   end

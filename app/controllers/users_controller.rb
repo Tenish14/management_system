@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
+      flash[:warning] = "Profile updated"
       redirect_to users_path
     else
       render 'edit'
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      flash[:success] = "User deleted"
+      flash[:danger] = "User deleted"
         redirect_to users_path
     end
   end

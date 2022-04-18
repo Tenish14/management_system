@@ -28,7 +28,7 @@ class RolesController < ApplicationController
 
     def update
         if @role.update(role_params)
-            flash[:success] = "Role Updated"
+            flash[:warning] = "Role Updated"
             redirect_to roles_path
         else
             render 'edit'
@@ -37,7 +37,7 @@ class RolesController < ApplicationController
 
     def destroy
         if @role.destroy
-            flash[:success] = "Role destroyed"
+            flash[:danger] = "Role destroyed"
             redirect_to roles_path
         end
     end

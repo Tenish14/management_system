@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
       outlet_profits = params[:location_item][:outlet_profits]
       location_item = LocationItem.where(location_id: location_id, item_id: @item.id, id: location_item_id)
       location_item.update(outlet_price: outlet_prices, outlet_cost: outlet_costs, outlet_profit: outlet_profits)
-      flash[:success] = "Items updated"
+      flash[:warning] = "Items updated"
       redirect_to item_path(@item)
     else
       render 'edit'
@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      flash[:success] = "Item deleted"
+      flash[:danger] = "Item deleted"
       redirect_to items_path
     end
   end
