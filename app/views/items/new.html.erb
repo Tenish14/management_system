@@ -46,7 +46,7 @@
                            
                         </div>
                     
-                        <div id= "price" class="my-2">
+                        <div id= "price">
                             <%= f.label :outlet_price , class: 'required form-label' %>
                             <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", nil, step: :any, class: 'form-input'%>
 
@@ -58,7 +58,7 @@
                         </div>
                     <% end %>
                 </div>
-                <div class="d-grid gap-2">
+                <div class="d-grid gap-2 my-2">
                     <%= f.submit "Create Item", class: "btn btn-primary" %>
                     <%= link_to 'Back', items_path, class: 'btn btn-success' %>
                 </div>
