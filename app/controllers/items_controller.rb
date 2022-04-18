@@ -36,12 +36,11 @@ class ItemsController < ApplicationController
   def update
     # binding.pry
     if @item.update(item_params)
-      location_id = params[:item][:location_id]
       location_item_id = params[:location_item][:id]
       outlet_prices = params[:location_item][:outlet_prices]
       outlet_costs = params[:location_item][:outlet_costs]
       outlet_profits = params[:location_item][:outlet_profits]
-      location_item = LocationItem.where(location_id: location_id, item_id: @item.id, id: location_item_id)
+      location_item = LocationItem.find(location_item_id)
       location_item.update(outlet_price: outlet_prices, outlet_cost: outlet_costs, outlet_profit: outlet_profits)
       flash[:warning] = "Items updated"
       redirect_to item_path(@item)

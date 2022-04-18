@@ -3,13 +3,13 @@
 <div class="container mt-5">
     <div class="row" >
         <div class="col-md-6" >
-            <h2>Item Details</h2>
-            <h5>Item Code: <%= @item.item_code %></h5>
-            <h5>Name: <%= @item.name %></h5>
-            <h5>Description: <%= @item.description %></h5>
-            <h5>Item Price: <%= @item.price %></h5>
-            <h5>Item Cost: <%= @item.cost %></h5>
-            <h5>Item Profit: <%= @item.profit %></h5>
+            <h2 class="form-label">Item Details</h2>
+            <h5 class="form-label">Item Code: <%= @item.item_code %></h5>
+            <h5 class="form-control">Name: <%= @item.name %></h5>
+            <h5 class="form-control">Description: <%= @item.description %></h5>
+            <h5 class="form-control">Item Price: <%= @item.price %></h5>
+            <h5 class="form-control">Item Cost: <%= @item.cost %></h5>
+            <h5 class="form-control">Item Profit: <%= @item.profit %></h5>
         </div>
     </div>
 
@@ -61,9 +61,6 @@
                                                 <% f.label :Company, class: 'required' %>
                                                 <% f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
                                                 <%= f.hidden_field :company_id, value: current_user.company.id %>
-
-                                                <% f.label :Location, class: 'required' %>
-                                                <%= f.hidden_field :location_id, value: location.id %>
 
                                                 <% f.label :LocationItem, class: 'required' %>
                                                 <%= hidden_field_tag "[location_item][id]", location_item.id %>
