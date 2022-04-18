@@ -13,23 +13,83 @@
     <h3 class="my-2">Company Location Details</h3>
     <table class="table table-hover">
         <tr>
+            <th>Location Code</th>
             <th>Name</th>
             <th>Address 1</th>
             <th>Address 2</th>
             <th>Postcode</th>
             <th>State</th>
             <th>Country</th>
+            <th>Edit</th>
 
         </tr>
 
-        <% @company.locations.each do |location| %>                    
+        <% company_locations = @company.locations%>                    
+        <% company_locations.sort_by(&:id).each do |location| %>                    
             <tr>
+                <td><%= location.location_code %></td>
                 <td><%= location.name %></td>
                 <td><%= location.address_1 %></td>
                 <td><%= location.address_2 %></td>
                 <td><%= location.postcode %></td>
                 <td><%= location.state %></td>
                 <td><%= location.country %></td>
+                <td>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id %>">
+                            <i class="bi bi-pencil-fill"></i>
+                    </button>
+
+                    <div class="modal fade" id="exampleModal-<%= location.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <p class="modal-title" id="exampleModalLabel-<%= location.id %>"> <%= location.name %> </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6 mx-auto my-auto">
+                                            <%= form_with(model: @company, local: true, data: { turbo: false }) do |f| %>
+                                                <% location = Location.find(location.id) %>
+                                                    <%= f.label :Company, class: 'required' %>
+                                                    <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+                                                    <%= hidden_field_tag '[location][company_id]', current_user.company.id %>
+
+                                                    <%= hidden_field_tag '[location][id]', location.id%>
+
+                                                    <%= f.label :location_code, class: 'required'%>
+                                                    <%= text_field_tag '[location][location_code]', location.location_code, class: 'form-control', required: true %>
+
+                                                    <%= f.label :name, class: 'required' %>
+                                                    <%= text_field_tag '[location][name]', location.name, class: 'form-control', required: true %>
+
+                                                    <%= f.label :address_1, class: 'required' %>
+                                                    <%= text_field_tag '[location][address_1]', location.address_1, class: 'form-control', required: true %>
+
+                                                    <%= f.label :address_2 %>
+                                                    <%= text_field_tag '[location][address_2]', location.address_2, class: 'form-control' %>
+
+                                                    <%= f.label :postcode, class: 'required' %>
+                                                    <%= number_field_tag "[location][postcode]", location.postcode, step: :any, class: "form-control" %>
+
+                                                    <%= f.label :state, class: 'required' %>
+                                                    <%= text_field_tag '[location][state]', location.state, class: 'form-control', required: true %>
+
+                                                    <%= f.label :country, class: 'required' %>
+                                                    <%= text_field_tag '[location][country]', location.country, class: 'form-control', required: true %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save Changes</button>
+                                </div>
+                                            <% end %>
+                                </div>
+                            </div>
+                        </div>
+                </td>
             </tr>
         <% end %>                    
     </table>

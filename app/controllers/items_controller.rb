@@ -65,10 +65,5 @@ class ItemsController < ApplicationController
     def current_item
       @item = Item.find(params[:id])
     end
-
-    # def location_item
-    #   params.require(:location_item).permit(:location_id, :item_id, :outlet_price, :outlet_cost, :outlet_profit)
-    # end
     
-   
 end
