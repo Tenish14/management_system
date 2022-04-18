@@ -44,7 +44,7 @@
                         </div>
                         <% location_items = LocationItem.where(location_id: location.id, item_id: @item.id) %> 
                             <% location_items.each do |location_item| %>
-                                <div id= "price" class="my-2">
+                                <div id= "price">
                                     <%= f.label :outlet_price , class: 'required form-label'%>
                                     <%= number_field_tag "[location_item][outlet_prices][#{location.id}][]", location_item.outlet_price, step: :any, class: 'form-control' %>
 
@@ -57,7 +57,7 @@
                             <% end %>
                     <% end %>
                 </div>
-                <div class="d-grid gap-2">
+                <div class="d-grid gap-2 my-2">
                     <%= f.submit "Save Changes", class: "btn btn-primary" %>
                     <%= link_to 'Back', items_path, class: 'btn btn-success' %>
                 </div>

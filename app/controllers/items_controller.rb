@@ -2,15 +2,11 @@ class ItemsController < ApplicationController
   before_action :current_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.all
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @items = Item.order(:id)
   end
 
   def show
-
+    @items = Item.order(:id)
   end
 
   def new 
