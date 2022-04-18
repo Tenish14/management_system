@@ -2,7 +2,7 @@ class RolesController < ApplicationController
     before_action :current_role, only: [:edit, :update, :destroy]
 
     def index
-        @role = Role.all
+        @roles = Role.all
     end
 
     def new

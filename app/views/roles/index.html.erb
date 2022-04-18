@@ -2,39 +2,43 @@
 <h1 class="center mt-4">Roles</h1>
 
 <div class="container">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Role Permission</th>
-                <th>Edit</th>
-            </tr>
-
-            <% @role.each do |role| %>                    
+    <% if @roles.count == 0 %>
+        <h1 class="center"> No Role Avaliable</h1>
+    <% else %>
+        <div class="table-responsive">
+            <table class="table table-hover">
                 <tr>
-                    <td><%= role.id%></td>
-                    <td><%= role.name%></td>
-                    <td><%= role.description %></td>
-                    <% role_permissions = RolePermission.where(role_id: role.id) %>
-                    <td> 
-                        <% role_permissions.each do |role_permission| %>
-                            <% permission_id = role_permission.permission_id %>
-                            <% permissions = Permission.where(:id => permission_id) %>
-                            <% permissions.each do |permission| %>
-                                <%= permission.permission %> 
-                            <% end %>
-                        <% end %>
-                    </td>
-                    <td>
-                        <%= link_to edit_role_path(role), class: "btn btn-warning" do %>
-                            <i class="bi bi-pencil-fill"></i>
-                        <% end %>
-                    </td>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Role Permission</th>
+                    <th>Edit</th>
                 </tr>
-            <% end %>                    
-        </table>
-    </div>
+
+                <% @roles.each do |role| %>                    
+                    <tr>
+                        <td><%= role.id%></td>
+                        <td><%= role.name%></td>
+                        <td><%= role.description %></td>
+                        <% role_permissions = RolePermission.where(role_id: role.id) %>
+                        <td> 
+                            <% role_permissions.each do |role_permission| %>
+                                <% permission_id = role_permission.permission_id %>
+                                <% permissions = Permission.where(:id => permission_id) %>
+                                <% permissions.each do |permission| %>
+                                    <%= permission.permission %> 
+                                <% end %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= link_to edit_role_path(role), class: "btn btn-warning" do %>
+                                <i class="bi bi-pencil-fill"></i>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>                    
+            </table>
+        </div>
+    <% end %>
     <%= link_to 'Add Roles', new_role_path, class: 'btn btn-success' %>
 </div>

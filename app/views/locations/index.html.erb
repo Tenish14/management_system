@@ -1,73 +1,77 @@
 <% @title="Locations" %>
-<h1 class="center mt-4">Locations</h1>
 
 <div class="container">
-    <div class="table hovering">
-        <table class="table table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Location Code</th>
-                <th>Name</th>
-                <th>Address 1</th>
-                <th>Address 2</th>
-                <th>Postcode</th>
-                <th>State</th>
-                <th>Country</th>
-                <th>Company</th>
-                <th>Items count</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
+    <% if @locations.count == 0%>
+        <h1 class="center mt-4"> No Location Avaliable </h1>
+    <% else %>
+        <h1 class="center mt-4">Locations</h1>
+        <div class="table hovering">
+            <table class="table table-hover">
+                <tr>
+                    <th>Id</th>
+                    <th>Location Code</th>
+                    <th>Name</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>Postcode</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Company</th>
+                    <th>Items count</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
 
-            <% @locations.each do |location| %>  
-                <% if current_user.company_id == location.company_id %>                   
-                    <tr>
-                        <td><%= location.id%></td>
-                        <td><%= link_to location.location_code, location_path(location)%></td>
-                        <td><%= location.name%></td>
-                        <td><%= location.address_1 %></td>
-                        <td><%= location.address_2%></td>
-                        <td><%= location.postcode%></td>
-                        <td><%= location.state%></td>
-                        <td><%= location.country%></td>
-                        <td><%= location.company.name%></td>
-                        <td><%= location.items.count%></td>
-                        <td>
-                            <%= link_to edit_location_path(location), class: "btn btn-warning" do %>
-                                <i class="bi bi-pencil-fill"></i>
-                            <% end %>
-                        </td>
+                <% @locations.each do |location| %>  
+                    <% if current_user.company_id == location.company_id %>                   
+                        <tr>
+                            <td><%= location.id%></td>
+                            <td><%= link_to location.location_code, location_path(location)%></td>
+                            <td><%= location.name%></td>
+                            <td><%= location.address_1 %></td>
+                            <td><%= location.address_2%></td>
+                            <td><%= location.postcode%></td>
+                            <td><%= location.state%></td>
+                            <td><%= location.country%></td>
+                            <td><%= location.company.name%></td>
+                            <td><%= location.items.count%></td>
+                            <td>
+                                <%= link_to edit_location_path(location), class: "btn btn-warning" do %>
+                                    <i class="bi bi-pencil-fill"></i>
+                                <% end %>
+                            </td>
 
-                         <td> 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id%>">
-                                <i class="bi bi-trash3-fill"></i>
-                            </button>
+                            <td> 
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= location.id%>">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
 
-                            <div class="modal fade" id="exampleModal-<%= location.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"><%= location.name %></h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal fade" id="exampleModal-<%= location.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><%= location.name %></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this location?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <%= button_to location_path(location), class: "btn btn-danger", method: :delete do %> 
+                                                Confirm
+                                            <% end %>
+                                        </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete this location?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <%= button_to location_path(location), class: "btn btn-danger", method: :delete do %> 
-                                            Confirm
-                                        <% end %>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>                                 
-                        </td>
-                    </tr>
+                                </div>                                 
+                            </td>
+                        </tr>
+                    <% end %>                    
                 <% end %>                    
-            <% end %>                    
-        </table>
-    </div>
+            </table>
+        </div>
+    <% end %>
 
     <% if logged_in? && current_user.role_id? %>
         <%= link_to 'Add location', new_location_path, class: 'btn btn-success' %>

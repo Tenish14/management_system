@@ -1,28 +1,33 @@
 <% @title="Categories" %>
-<h1 class="center mt-4">Category</h1>
 
 <div class="container">
-    <div class="table-responsive">
-    <table class="table table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Edit</th>
-        </tr>
+    <% if @categories.count == 0 %>
+        <h1 class="center mt-4">No Category Avaliable</h1>
+    <% else %>
+        <h1 class="center mt-4">Category</h1>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Edit</th>
+                </tr>
 
-        <% @categories.each do |category| %>                    
-            <tr>
-                <td><%= category.id%></td>
-                <td><%= category.name%></td>
-                <td><%= category.description %></td>
-                <td>
-                    <%= link_to edit_category_path(category), class: "btn btn-warning" do %>
-                       <i class="bi bi-pencil-fill"></i>
-                    <% end %>
-                </td>
-            </tr>
-        <% end %>                    
-    </table>
+                <% @categories.each do |category| %>                    
+                    <tr>
+                        <td><%= category.id%></td>
+                        <td><%= category.name%></td>
+                        <td><%= category.description %></td>
+                        <td>
+                            <%= link_to edit_category_path(category), class: "btn btn-warning" do %>
+                            <i class="bi bi-pencil-fill"></i>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>                    
+            </table>
+        </div>
+    <% end %>
     <%= link_to 'Add Category', new_category_path, class: 'btn btn-success' %>
 </div>
