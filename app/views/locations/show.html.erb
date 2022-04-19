@@ -19,6 +19,7 @@
     <div class="table repsonsive">
         <table class="table table-hover">
             <tr>
+                <th>Code</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Quantity Stock</th>
@@ -30,13 +31,16 @@
                 <th>Outlet Price</th>
                 <th>Outlet Cost</th>
                 <th>Outlet Profit</th>
+                <th>Edit</th>
                 
 
             </tr>
 
-            <% @location.items.each do |item| %>  
+            <% location_items = @location.items %>  
+            <% location_items.sort_by(&:id).each do |item| %>  
                 <% location_item = LocationItem.where(location_id: @location.id, item_id: item.id).first %>                  
                 <tr>
+                    <td><%= item.item_code %></td>
                     <td><%= item.name %></td>
                     <td><%= item.description%></td>
                     <td><%= item.quantity_stock%></td>
@@ -48,6 +52,75 @@
                     <td><%= location_item.outlet_price %></td>
                     <td><%= location_item.outlet_cost %></td>
                     <td><%= location_item.outlet_profit %></td>
+                    <td>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= item.id %>">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+
+                        <div class="modal fade" id="exampleModal-<%= item.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <p class="modal-title" id="exampleModalLabel-<%= item.id %>"> <%= item.name %> </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                       <%= form_with(model: @location, local: true, data: { turbo: false }) do |f| %>
+                                                <% item = Item.find(item.id) %> 
+                                                <% category = Category.all %>
+                                                <% location_item = LocationItem.where(item_id: item.id).first %>
+                                                <%= f.label :Company, class: 'required form-label' %>
+                                                <%= f.text_field :company_id, value:current_user.company.name, class: 'form-control', :readonly => true %>
+                                                <%= hidden_field_tag '[item][company_id]', current_user.company.id %>
+
+                                                <%= hidden_field_tag '[item][id]', item.id%>
+
+                                                <%= f.label :code, class: 'required'%>
+                                                <%= text_field_tag '[item][code]', item.item_code, class: 'form-control', required: true %>
+
+                                                <%= f.label :name, class: 'required'%>
+                                                <%= text_field_tag '[item][name]', item.name, class: 'form-control', required: true %>
+
+                                                <%= f.label :description, class: 'required'%>
+                                                <%= text_field_tag '[item][description]', item.description, class: 'form-control', required: true %>
+
+                                                <%= f.label :quantity, class: 'required' %>
+                                                <%= number_field_tag "[item][quantity]", item.quantity_stock, step: :any, class: "form-control" %>
+
+                                                <%= f.label :price, class: 'required' %>
+                                                <%= number_field_tag "[item][price]", item.price, step: :any, class: "form-control" %>
+
+                                                <%= f.label :cost, class: 'required' %>
+                                                <%= number_field_tag "[item][cost]", item.cost, step: :any, class: "form-control" %>
+
+                                                <%= f.label :profit, class: 'required' %>
+                                                <%= number_field_tag "[item][profit]", item.profit, step: :any, class: "form-control" %>
+
+                                                <%= f.label :category, class: 'required form-label'%>
+                                                <%= select_tag "[item][category]", options_from_collection_for_select(category, "id", "name", item.category_id), class: 'form-control'%>
+
+                                                <%= f.label :outlet_price, class: 'required' %>
+                                                <%= number_field_tag "[item][outlet_price]", location_item.outlet_price, step: :any, class: "form-control" %>
+
+                                                <%= f.label :outlet_cost, class: 'required' %>
+                                                <%= number_field_tag "[item][outlet_cost]", location_item.outlet_cost, step: :any, class: "form-control" %>
+
+                                                <%= f.label :outlet_profit, class: 'required' %>
+                                                <%= number_field_tag "[item][outlet_profit]", location_item.outlet_profit, step: :any, class: "form-control" %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save Changes</button>
+                                </div>
+                                <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             <% end %>     
         </table>
