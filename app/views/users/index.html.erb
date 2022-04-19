@@ -4,23 +4,33 @@
     <% if @users.count == 0 %>
         <h1 class="center"> No Users Avaliable</h1>
     <% else %>
-        <h2 class="center mt-5">Users</h2>
+        <h2 class="center mt-4">Users</h2>
+        <div class="input-group justify-content-end my-2">
+            <div class="form-outline">
+                <input type="search" class="form-control" id="myInput" placeholder="Search" />
+            </div>
+            <button type="button" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
         <div class="table-responsive"> 
             <table class="table table-hover">
-                <tr>
-                    <th>Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                <thead>
 
                 <% @users.each do |user| %>  
                     <% if current_user.company_id == user.company_id %>                   
-                        <tr>
+                        <tr class="user_table">
                             <td><%= user.id%></td>
                             <td><%= user.first_name%></td>
                             <td><%= user.last_name %></td>
@@ -65,3 +75,14 @@
     <% end %>
     <%= link_to 'Add User', signup_path, class: 'btn btn-success' %>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tr.user_table").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

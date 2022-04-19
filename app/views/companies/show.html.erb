@@ -19,22 +19,31 @@
         </div>
     </div>
     <h3 class="my-2">Company Location Details</h3>
+    <div class="input-group justify-content-end my-2">
+        <div class="form-outline">
+            <input type="search" class="form-control" id="myInput" placeholder="Search" />
+        </div>
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
     <table class="table table-hover">
-        <tr>
-            <th>Location Code</th>
-            <th>Name</th>
-            <th>Address 1</th>
-            <th>Address 2</th>
-            <th>Postcode</th>
-            <th>State</th>
-            <th>Country</th>
-            <th>Edit</th>
-
-        </tr>
+        <thead>
+            <tr>
+                <th>Location Code</th>
+                <th>Name</th>
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>Postcode</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
 
         <% company_locations = @company.locations%>                    
         <% company_locations.sort_by(&:id).each do |location| %>                    
-            <tr>
+            <tr class="company_location_table">
                 <td><%= location.location_code %></td>
                 <td><%= location.name %></td>
                 <td><%= location.address_1 %></td>
@@ -102,3 +111,14 @@
         <% end %>                    
     </table>
     <%= link_to 'Back', companies_path, class: 'btn btn-large btn-success' %>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tr.company_location_table").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

@@ -1,12 +1,21 @@
 <% @title="Role" %>
-<h1 class="center mt-4">Roles</h1>
 
 <div class="container">
     <% if @roles.count == 0 %>
         <h1 class="center"> No Role Avaliable</h1>
     <% else %>
+    <h1 class="center mt-4">Roles</h1>
+    <div class="input-group justify-content-end my-2">
+        <div class="form-outline">
+            <input type="search" class="form-control" id="myInput" placeholder="Search" />
+        </div>
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
         <div class="table-responsive">
             <table class="table table-hover">
+            <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -14,9 +23,10 @@
                     <th>Role Permission</th>
                     <th>Edit</th>
                 </tr>
+            </thead>
 
                 <% @roles.each do |role| %>                    
-                    <tr>
+                    <tr class="role_table">
                         <td><%= role.id%></td>
                         <td><%= role.name%></td>
                         <td><%= role.description %></td>
@@ -42,3 +52,14 @@
     <% end %>
     <%= link_to 'Add Roles', new_role_path, class: 'btn btn-success' %>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tr.role_table").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
