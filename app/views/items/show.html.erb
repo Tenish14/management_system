@@ -2,14 +2,27 @@
 
 <div class="container mt-5">
     <div class="row" >
-        <div class="col-md-6" >
-            <h2 class="form-label">Item Details</h2>
-            <h5 class="form-label">Item Code: <%= @item.item_code %></h5>
-            <h5 class="form-control">Name: <%= @item.name %></h5>
-            <h5 class="form-control">Description: <%= @item.description %></h5>
-            <h5 class="form-control">Item Price: <%= @item.price %></h5>
-            <h5 class="form-control">Item Cost: <%= @item.cost %></h5>
-            <h5 class="form-control">Item Profit: <%= @item.profit %></h5>
+        <div class="col-md-3" >
+            <h2>Item Details</h2>
+            <h5>Item Code: <br/> 
+                <p class="form-control my-2"><%= @item.item_code %></p>
+            </h5>
+            <h5>Name: <br/> 
+                <p class="form-control my-2"><%= @item.name %></p>
+            </h5>
+            <h5>Description: <br/> 
+               <p class="form-control my-2"><%= @item.description %></p>
+            </h5>
+            <h5>Item Price: <br/> 
+                <p class="form-control my-2"><%= @item.price %></p>
+            </h5>
+            <h5>Item Cost: <br/>
+                <p class="form-control my-2"><%= @item.cost %></p>
+            </h5>
+            <h5>Item Profit: <br/>
+                <p class="form-control my-2"><%= @item.profit %></p>
+            </h5>
+          
         </div>
     </div>
 

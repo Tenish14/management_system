@@ -2,17 +2,35 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-md-6 mt-4" >
+        <div class="col-md-3" >
             <h1>Location Details</h1>
-            <h5>Location Code: <%= @location.location_code %></h5>
-            <h5>Name : <%= @location.name %></h5>
-            <h5>Address 1 : <%= @location.address_1 %></h5>
-            <h5>Address 2 : <%= @location.address_2 %></h5>
-            <h5>Postcode : <%= @location.postcode %></h5>
-            <h5>State : <%= @location.state %></h5>
-            <h5>Country : <%= @location.country %></h5>
-            <h5>Company : <%= @location.company.name %></h5>
-            <h5>Items Count : <%= @location.items.count %></h5>
+            <h5>Location Code: <br/> 
+                <p class="form-control my-2"><%= @location.location_code %></p>
+            </h5>
+            <h5>Name :<br/> 
+                <p class="form-control my-2"><%= @location.name %></p>
+            </h5>
+            <h5>Address 1 : <br/> 
+                <p class="form-control my-2"><%= @location.address_1 %></p>
+            </h5>
+            <h5>Address 2 : <br/> 
+                <p class="form-control my-2"><%= @location.address_2 %></p>
+            </h5>
+            <h5>Postcode : <br/>
+                <p class="form-control my-2"><%= @location.postcode %></p>
+            </h5>
+            <h5>State : <br/> 
+                <p class="form-control my-2"><%= @location.state %></p>
+            </h5>
+            <h5>Country : <br/> 
+                <p class="form-control my-2"><%= @location.country %></p>
+            </h5>
+            <h5>Company : <br/> 
+                <p class="form-control my-2"><%= @location.company.name %></p>
+            </h5>
+            <h5>Items Count : <br/> 
+                <p class="form-control my-2"><%= @location.items.count %></p>
+            </h5>
         </div>
     </div>
     <h3 class="my-4">Item Details</h3>
