@@ -32,10 +32,11 @@
                         <div class="col-4">
                             <%= f.label :item, class: 'required form-label'%>
                             <% items = Item.where(company_id: current_user.company.id)%>
-                            <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item'} %>
-                                <datalist id="browser-item" >
+                            <%= text_field_tag "[supplier_item][item_ids][]", nil, {class: 'form-control', list: 'browser-item'} %>
+                                <datalist id="browser-item">
                                     <% items.each do |item| %>
-                                        <option class="form-control" data-value = <%= item.id %>  value = <%= "#{item.item_code} - #{item.name}" %>></option>
+                                        <option data-value=<%= item.id %>  value=<%= "#{item.item_code}"%>>
+                                        <%= item.name%>
                                     <% end %>
                                 </datalist>
                         </div> 
@@ -43,17 +44,18 @@
                         <div class="col-4">
                             <%= f.label :location, class: 'required form-label' %>
                             <% locations = Location.where(company_id: current_user.company.id)%>
-                            <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location'} %>
+                            <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location', class: 'form-control'} %>
                             <datalist id="browser-location" >
                                 <% locations.each do |location| %>
-                                    <option class="form-control" data-value = <%= location.id %> value = <%= "#{location.location_code} - #{location.name}"%>></option>
+                                   <option data-value=<%= location.id %>  value=<%= "#{location.location_code}"%>>
+                                    <%= location.name%>
                                 <% end %>
                             </datalist>
                         </div> 
 
                         <div class="col-4">
                             <%= f.label :supplier_price, class: 'required form-label' %>
-                        <%=  number_field_tag "[supplier_item][supplier_prices][]", nil, step: :any  %>
+                        <%=  number_field_tag "[supplier_item][supplier_prices][]", nil, step: :any, class: 'form-control'  %>
                         
                     </div>
                 </div>
