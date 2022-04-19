@@ -22,7 +22,7 @@
                     <th>Delete</th>
                 </tr>
 
-                <% @locations.each do |location| %>  
+                <% @locations.sort_by(&:id).each do |location| %>  
                     <% if current_user.company_id == location.company_id %>                   
                         <tr>
                             <td><%= location.id%></td>
