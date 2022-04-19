@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row" >
         <div class="col-md-3" >
-            <h1>Location Details</h1>
+            <h1 class="my-4">Location Details</h1>
             <h5>Location Code: <br/> 
                 <p class="form-control my-2"><%= @location.location_code %></p>
             </h5>
@@ -34,8 +34,17 @@
         </div>
     </div>
     <h3 class="my-4">Item Details</h3>
+    <div class="input-group justify-content-end my-2">
+        <div class="form-outline">
+            <input type="search" class="form-control" id="myInput" placeholder="Search" />
+        </div>
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
     <div class="table repsonsive">
         <table class="table table-hover">
+        <thead>
             <tr>
                 <th>Code</th>
                 <th>Name</th>
@@ -50,14 +59,13 @@
                 <th>Outlet Cost</th>
                 <th>Outlet Profit</th>
                 <th>Edit</th>
-                
-
             </tr>
+        </thead>
 
             <% location_items = @location.items %>  
             <% location_items.sort_by(&:id).each do |item| %>  
                 <% location_item = LocationItem.where(location_id: @location.id, item_id: item.id).first %>                  
-                <tr>
+                <tr class="item_details_table">
                     <td><%= item.item_code %></td>
                     <td><%= item.name %></td>
                     <td><%= item.description%></td>
@@ -143,4 +151,15 @@
             <% end %>     
         </table>
     </div>
-    <%= link_to 'Back', locations_path, class: 'btn btn-success' %>               
+    <%= link_to 'Back', locations_path, class: 'btn btn-success' %>
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tr.item_details_table").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

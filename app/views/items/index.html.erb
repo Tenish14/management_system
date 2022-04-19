@@ -4,26 +4,37 @@
     <%if @items.count == 0 %>
         <h1 class="center mt-4">No Item Avaliable</h1>
     <% else %>
-        <h2 class="center mt-4">Items</h2>
+        <h2 class=" center my-4">Items</h2>
+        <div class="input-group justify-content-end my-2">
+            <div class="form-outline">
+                <input type="search" class="form-control" id="myInput" placeholder="Search" />
+            </div>
+            <button type="button" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+
         <div class="table-responsive"> 
             <table class="table table-hover">
-                <tr>
-                    <th>Id</th>
-                    <th>Item Code</th>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>Quantity Stock</th>
-                    <th>Price</th>
-                    <th>Cost</th>
-                    <th>Profit</th>
-                    <th>Category Name</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Item Code</th>
+                        <th>Item Name</th>
+                        <th>Description</th>
+                        <th>Quantity Stock</th>
+                        <th>Price</th>
+                        <th>Cost</th>
+                        <th>Profit</th>
+                        <th>Category Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
 
                     <% @items.each do |item| %>  
                         <% if current_user.company_id == item.company_id %>                                           
-                            <tr>
+                            <tr class="item_table">
                                 <td><%= item.id%></td>
                                 <td><%= item.item_code%></td>
                                 <td><%= link_to item.name, item_path(item)%></td>
@@ -74,3 +85,14 @@
         <%= link_to 'Add Item', new_item_path, class: 'btn btn-success' %>
     <% end %>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("tr.item_table").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
