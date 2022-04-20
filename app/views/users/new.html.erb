@@ -9,7 +9,7 @@
                 
                 <% f.label :Company, class: 'required' %>
                 <% text_field_tag "company_id", current_user.company.name, class: 'form-control', :readonly => true %>
-                <%= hidden_field_tag "comapany_id", current_user.company.id %>
+                <%= hidden_field_tag "company_id", current_user.company.id %>
 
                 <%= f.label :first_name,  class: 'required form-label' %>
                 <%= f.text_field :first_name, class: 'form-control', required: true %>
