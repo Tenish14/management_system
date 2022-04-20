@@ -4,8 +4,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      <div class="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <div class="navbar-nav ms-auto">
           <% if logged_in? %>
             <% current_role_id = current_user.role.id %>
@@ -14,7 +13,7 @@
               <% permission_id = role_permission.permission_id %>
               <% permissions = Permission.where(:id => permission_id) %>
               <% permissions.each do |permission| %>
-                <%= link_to permission.permission, permission.path, class: "nav-link" %>
+                <a class="nav-link" href="/<%= permission.path%>"><%= permission.permission %></a>
               <% end%>
             <% end %>
             <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
