@@ -2,8 +2,8 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-md-3" >
-            <h1 class="my-4">Location Details</h1>
+        <h1 class="my-4">Location Details</h1>
+        <div class="col" >
             <h5>Location Code: <br/> 
                 <p class="form-control my-2"><%= @location.location_code %></p>
             </h5>
@@ -13,8 +13,17 @@
             <h5>Address 1 : <br/> 
                 <p class="form-control my-2"><%= @location.address_1 %></p>
             </h5>
+        </div>
+        <div class="col" >
             <h5>Address 2 : <br/> 
-                <p class="form-control my-2"><%= @location.address_2 %></p>
+                <p class="form-control my-2">
+                <%location_address =  @location.address_2 %>
+                <% if location_address == "" %>
+                    <%= "-" %>
+                <% else %>
+                    <%= location_address %>
+                <% end %>
+                </p>
             </h5>
             <h5>Postcode : <br/>
                 <p class="form-control my-2"><%= @location.postcode %></p>
@@ -22,6 +31,8 @@
             <h5>State : <br/> 
                 <p class="form-control my-2"><%= @location.state %></p>
             </h5>
+        </div>
+        <div class="col" >
             <h5>Country : <br/> 
                 <p class="form-control my-2"><%= @location.country %></p>
             </h5>
@@ -33,15 +44,23 @@
             </h5>
         </div>
     </div>
-    <h3 class="my-4">Item Details</h3>
-    <div class="input-group justify-content-end my-2">
-        <div class="form-outline">
-            <input type="search" class="form-control" id="myInput" placeholder="Search" />
+
+    <div class="row">
+        <div class="col">
+            <h3 class="my-4">Location Item Details</h3>
         </div>
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-search"></i>
-        </button>
+        <div class="col">
+            <div class="input-group justify-content-end my-2">
+                <div class="form-outline">
+                    <input type="search" class="form-control" id="myInput" placeholder="Search" />
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
     </div>
+
     <div class="table repsonsive">
         <table class="table table-hover">
         <thead>

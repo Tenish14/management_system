@@ -2,20 +2,24 @@
 
 <div class="container mt-5">
     <div class="row" >
-        <div class="col-md-6" >
-            <h1>Supplier Details</h1>
+        <h1>Supplier Details</h1>
+        <div class="col" >
             <h5>First Name: <br/> 
                 <p class="form-control my-2"><%= @supplier.first_name %></p>
             </h5>
             <h5>Last Name: <br/> 
                 <p class="form-control my-2"><%= @supplier.last_name %></p>
             </h5>
+        </div>
+        <div class="col">
             <h5>Username: <br/>
                 <p class="form-control my-2"><%= @supplier.username %></p>
             </h5>
             <h5>Email: <br/> 
                 <p class="form-control my-2"><%= @supplier.email %></p>
             </h5>
+        </div>
+        <div class="col">
             <h5>Phone Number: <br/> 
                 <p class="form-control my-2"><%= @supplier.phone_number %></p>
             </h5>
@@ -24,15 +28,23 @@
             </h5>
         </div>
     </div>
-    <h3 class="my-2">Supplier Item in other location</h3>
-    <div class="input-group justify-content-end my-2">
-        <div class="form-outline">
-            <input type="search" class="form-control" id="myInput" placeholder="Search" />
+
+    <div class="row">
+        <div class="col">
+            <h3 class="my-2">Supplier Item in other location</h3>
         </div>
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-search"></i>
-        </button>
-    </div>
+        <div class="col">
+            <div class="input-group justify-content-end my-2">
+                <div class="form-outline">
+                    <input type="search" class="form-control" id="myInput" placeholder="Search" />
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>  
+    
     <div class="table responsive">
         <table class="table table-hover">
         <thead>

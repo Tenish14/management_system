@@ -2,32 +2,36 @@
 
 <div class="container mt-5">
     <div class="row" >
-        <div class="col-md-3" >
             <h2>Item Details</h2>
-            <h5>Item Code: <br/> 
-                <p class="form-control my-2"><%= @item.item_code %></p>
-            </h5>
-            <h5>Name: <br/> 
-                <p class="form-control my-2"><%= @item.name %></p>
-            </h5>
-            <h5>Description: <br/> 
-               <p class="form-control my-2"><%= @item.description %></p>
-            </h5>
-            <h5>Item Price: <br/> 
-                <p class="form-control my-2"><%= @item.price %></p>
-            </h5>
-            <h5>Item Cost: <br/>
-                <p class="form-control my-2"><%= @item.cost %></p>
-            </h5>
-            <h5>Item Profit: <br/>
-                <p class="form-control my-2"><%= @item.profit %></p>
-            </h5>
-          
-        </div>
+            <div class="col">
+                <h5>Item Code: <br/> 
+                    <p class="form-control my-2"><%= @item.item_code %></p>
+                </h5>
+                <h5>Name: <br/> 
+                    <p class="form-control my-2"><%= @item.name %></p>
+                </h5>
+                <h5>Description: <br/> 
+                <p class="form-control my-2"><%= @item.description %></p>
+                </h5>
+            </div>
+            <div class="col">
+                <h5>Item Price: <br/> 
+                    <p class="form-control my-2"><%= @item.price %></p>
+                </h5>
+                <h5>Item Cost: <br/>
+                    <p class="form-control my-2"><%= @item.cost %></p>
+                </h5>
+                <h5>Item Profit: <br/>
+                    <p class="form-control my-2"><%= @item.profit %></p>
+                </h5>
+            </div>
     </div>
 
-    <h3 class = "my-2" >Item price in other location</h3>
-    <div class="input-group justify-content-end my-2">
+    <div class="row">
+        <div class="col">
+            <h3 class = "my-2" >Item price in other location</h3>
+        </div>
+        <div class="input-group justify-content-end my-2 col">
             <div class="form-outline">
                 <input type="search" class="form-control" id="myInput" placeholder="Search" />
             </div>
@@ -35,6 +39,7 @@
                 <i class="bi bi-search"></i>
             </button>
         </div>
+    </div>
 
     <div class="table-responsive"> 
         <table class="table table-hover">
