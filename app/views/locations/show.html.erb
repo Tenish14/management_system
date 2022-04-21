@@ -1,8 +1,15 @@
 <% @title="Location Details " + @location.location_code %>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row" >
-        <h1 class="my-4">Location Details</h1>
+        <div class="col">
+            <h2>Location Details</h2>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <a class="btn btn-warning" href="/locations/<%= @location.id %>/edit" role="button">Edit Location</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col" >
             <h5>Location Code: <br/> 
                 <p class="form-control my-2"><%= @location.location_code %></p>

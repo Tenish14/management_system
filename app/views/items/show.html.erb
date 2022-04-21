@@ -2,30 +2,38 @@
 
 <div class="container mt-5">
     <div class="row" >
+        <div class="col">
             <h2>Item Details</h2>
-            <div class="col">
-                <h5>Item Code: <br/> 
-                    <p class="form-control my-2"><%= @item.item_code %></p>
-                </h5>
-                <h5>Name: <br/> 
-                    <p class="form-control my-2"><%= @item.name %></p>
-                </h5>
-                <h5>Description: <br/> 
-                <p class="form-control my-2"><%= @item.description %></p>
-                </h5>
-            </div>
-            <div class="col">
-                <h5>Item Price: <br/> 
-                    <p class="form-control my-2"><%= @item.price %></p>
-                </h5>
-                <h5>Item Cost: <br/>
-                    <p class="form-control my-2"><%= @item.cost %></p>
-                </h5>
-                <h5>Item Profit: <br/>
-                    <p class="form-control my-2"><%= @item.profit %></p>
-                </h5>
-            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <a class="btn btn-warning" href="/items/<%= @item.id %>/edit" role="button">Edit Item</a>
+        </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <h5>Item Code: <br/> 
+                <p class="form-control my-2"><%= @item.item_code %></p>
+            </h5>
+            <h5>Name: <br/> 
+                <p class="form-control my-2"><%= @item.name %></p>
+            </h5>
+            <h5>Description: <br/> 
+            <p class="form-control my-2"><%= @item.description %></p>
+            </h5>
+        </div>
+        <div class="col">
+            <h5>Item Price: <br/> 
+                <p class="form-control my-2"><%= @item.price %></p>
+            </h5>
+            <h5>Item Cost: <br/>
+                <p class="form-control my-2"><%= @item.cost %></p>
+            </h5>
+            <h5>Item Profit: <br/>
+                <p class="form-control my-2"><%= @item.profit %></p>
+            </h5>
+        </div>
+    </div>
+</div>
 
     <div class="row">
         <div class="col">
