@@ -35,14 +35,18 @@ class ItemsController < ApplicationController
   
   def update
     # binding.pry
-    if @item.update(item_params)
+    if item_params[:item_code] != nil
+      @item.update(item_params)
+      flash[:warning] = "Items updated"
+      redirect_to item_path(@item)
+    elsif item_params[:item_code] == nil
       location_item_id = params[:location_item][:id]
       outlet_prices = params[:location_item][:outlet_prices]
       outlet_costs = params[:location_item][:outlet_costs]
       outlet_profits = params[:location_item][:outlet_profits]
       location_item = LocationItem.find(location_item_id)
       location_item.update(outlet_price: outlet_prices, outlet_cost: outlet_costs, outlet_profit: outlet_profits)
-      flash[:warning] = "Items updated"
+      flash[:warning] = "Location Price updated"
       redirect_to item_path(@item)
     else
       render 'edit'

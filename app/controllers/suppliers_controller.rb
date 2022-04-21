@@ -47,34 +47,8 @@ class SuppliersController < ApplicationController
 
   def update
     # binding.pry
-    item_id = params[:item][:id]
-    item_name = params[:item][:name]
-    item_code = params[:item][:code]
-    item_description = params[:item][:description]
-    item_quantity = params[:item][:quantity]
-    item_price = params[:item][:price]
-    item_cost = params[:item][:cost]
-    item_profit = params[:item][:profit]
-    item_category = params[:item][:category]
-    item_outlet_price = params[:item][:outlet_price]
-    item_outlet_cost = params[:item][:outlet_cost]
-    item_outlet_profit = params[:item][:outlet_profit]
-    item_supplier_price = params[:item][:supplier_price]
-    item_location_id = params[:item][:location_id]
-    
-    location_id = Location.where(:location_code => item_location_id).pluck(:id).first
-    location_id.to_i
-
-    item = Item.find(item_id)
-    item.update(name: item_name, description: item_description, quantity_stock: item_quantity, price: item_price, cost: item_cost, profit: item_profit, item_code: item_code, category_id: item_category)
-
-    supplier_item = SupplierItem.where(item_id: item_id)
-    supplier_item.update(supplier_price: item_supplier_price, location_id: location_id)
-
-    flash[:warning] = "Supplier updated"
-    redirect_to supplier_path(@supplier)
-
-    if @supplier.update(supplier_params)
+    if supplier_params[:username] != nil
+      @supplier.update(supplier_params)
       item_code = params[:supplier_item][:item_ids]
       item_id  = Item.where(:item_code => item_code).pluck(:id)
       item_code.replace(item_id)
@@ -92,11 +66,38 @@ class SuppliersController < ApplicationController
           supplier_price: supplier_price,
           supplier_id: @supplier.id
         })
-        end
-        flash[:warning] = "Supplier updated"
-        redirect_to supplier_path(@supplier)
+      end
+    flash[:warning] = "Supplier updated"
+    redirect_to supplier_path(@supplier)
+    elsif supplier_params[:username] == nil
+      item_id = params[:item][:id]
+      item_name = params[:item][:name]
+      item_code = params[:item][:code]
+      item_description = params[:item][:description]
+      item_quantity = params[:item][:quantity]
+      item_price = params[:item][:price]
+      item_cost = params[:item][:cost]
+      item_profit = params[:item][:profit]
+      item_category = params[:item][:category]
+      item_outlet_price = params[:item][:outlet_price]
+      item_outlet_cost = params[:item][:outlet_cost]
+      item_outlet_profit = params[:item][:outlet_profit]
+      item_supplier_price = params[:item][:supplier_price]
+      item_location_id = params[:item][:location_id]
+      
+      location_id = Location.where(:location_code => item_location_id).pluck(:id).first
+      location_id.to_i
+
+      item = Item.find(item_id)
+      item.update(name: item_name, description: item_description, quantity_stock: item_quantity, price: item_price, cost: item_cost, profit: item_profit, item_code: item_code, category_id: item_category)
+
+      supplier_item = SupplierItem.where(item_id: item_id)
+      supplier_item.update(supplier_price: item_supplier_price, location_id: location_id)
+
+      flash[:warning] = "Supplier Item Updated"
+      redirect_to supplier_path(@supplier)
     else
-      # render 'edit'
+      render 'edit'
     end
   end
 

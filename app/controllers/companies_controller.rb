@@ -26,7 +26,11 @@ class CompaniesController < ApplicationController
     end
 
     def update
-        if @company.update(company_params)
+        if company_params[:name] != nil
+            @company.update(company_params)
+            flash[:warning] = "Company Updated"
+            redirect_to company_path(@company)
+        elsif company_params[:name] == nil
             location_id = params[:location][:id]
             location_code = params[:location][:location_code]
             location_name = params[:location][:name]
@@ -38,7 +42,7 @@ class CompaniesController < ApplicationController
             location_company = params[:location][:company_id]
             location = Location.find(location_id)
             location.update(location_code: location_code, name: location_name, address_1: location_address1, address_2: location_address2, postcode: location_postcode, state: location_state, country: location_country, company_id: location_company)
-            flash[:warning] = "Company Updated"
+            flash[:warning] = "Company Location Updated"
             redirect_to company_path(@company)
         else
             render 'edit'
