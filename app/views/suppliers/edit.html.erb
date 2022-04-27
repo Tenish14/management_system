@@ -27,13 +27,59 @@
                 <%= f.text_field :phone_number, class: 'form-control', required: true%>
 
                 <button type='button' class = "btn btn-warning my-2" onclick="addMore()">Add Item</button>
+                <div>
+                    <div class="row">
+                        <div class="col-4">
+                            <% supplier_items = SupplierItem.where(supplier_id: @supplier) %>
+                            <% supplier_items.each do |supplier_item|%>
+                                <% item_id = supplier_item.item_id %>
+                                <% item = Item.find(item_id) %>
+                                <%= f.label :item, class: 'required form-label'%>
+                                <% items = Item.where(company_id: current_user.company.id)%>
+                                <%= text_field_tag "[supplier_item][item_ids][]", item.item_code, {list: 'browser-item', class: 'form-control'} %>
+                                    <datalist id="browser-item" >
+                                        <% items.each do |item| %>
+                                            <option data-value=<%= item.id %>  value=<%= "#{item.item_code}"%>>
+                                            <%= item.name%>
+                                        <% end %>
+                                    </datalist>
+                            <% end %>
+                        </div> 
+
+                        <div class="col-4">
+                            <% supplier_items = SupplierItem.where(supplier_id: @supplier) %>
+                            <% supplier_items.each do |supplier_item|%>
+                                <% location_id = supplier_item.location_id %>
+                                <% location = Location.find(location_id) %>
+                                <%= f.label :location, class: 'required form-label' %>
+                                <% locations = Location.where(company_id: current_user.company.id)%>
+                                <%= text_field_tag "[supplier_item][location_ids][]", location.location_code , {list: 'browser-location', class: 'form-control'} %>
+                                <datalist id="browser-location" >
+                                    <% locations.each do |location| %>
+                                        <option data-value=<%= location.id %>  value=<%= "#{location.location_code}"%>>
+                                        <%= location.name%>
+                                    <% end %>
+                                </datalist>
+                            <% end %>
+                        </div> 
+
+                        <div class="col-4">
+                            <% supplier_items = SupplierItem.where(supplier_id: @supplier) %>
+                            <% supplier_items.each do |supplier_item| %>
+                                <%= f.label :supplier_price, class: 'required form-label' %>
+                                <%=  number_field_tag "[supplier_item][supplier_prices][]", supplier_item.supplier_price, step: :any, class: 'form-control'  %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="original-inputs">
                     <div class="row">
                         <div class="col-4">
                             <%= f.label :item, class: 'required form-label'%>
                             <% items = Item.where(company_id: current_user.company.id)%>
-                            <%= text_field_tag "[supplier_item][item_ids][]", nil, {list: 'browser-item', class: 'form-control'} %>
-                                <datalist id="browser-item" >
+                            <%= text_field_tag "[supplier_item][item_ids][]", nil, {class: 'form-control', list: 'browser-item'} %>
+                                <datalist id="browser-item">
                                     <% items.each do |item| %>
                                         <option data-value=<%= item.id %>  value=<%= "#{item.item_code}"%>>
                                         <%= item.name%>
@@ -47,7 +93,7 @@
                             <%= text_field_tag "[supplier_item][location_ids][]", nil , {list: 'browser-location', class: 'form-control'} %>
                             <datalist id="browser-location" >
                                 <% locations.each do |location| %>
-                                    <option data-value=<%= location.id %>  value=<%= "#{location.location_code}"%>>
+                                   <option data-value=<%= location.id %>  value=<%= "#{location.location_code}"%>>
                                     <%= location.name%>
                                 <% end %>
                             </datalist>
@@ -55,10 +101,9 @@
 
                         <div class="col-4">
                             <%= f.label :supplier_price, class: 'required form-label' %>
-                            <%=  number_field_tag "[supplier_item][supplier_prices][]", nil, step: :any, class: 'form-control'  %>
+                        <%=  number_field_tag "[supplier_item][supplier_prices][]", nil, step: :any, class: 'form-control'  %>
                         </div>
-                </div>
-
+                    </div>
                 </div>
 
                 <div id="dynamic-inputs"></div>
@@ -73,6 +118,9 @@
 </div>
 
 <script type="text/javascript">
+    let original_input = document.querySelectorAll("div#original-inputs")
+   $(original_input).hide()
+
     function addMore(){
         $("#dynamic-inputs").append($("#original-inputs").html())
     }
